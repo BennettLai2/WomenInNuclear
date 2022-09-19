@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :accounts
 
-  root 'accounts#index'
+  root 'sessions#login'
 
   get '/admin', to: 'accounts#admin'
   get '/login', to: 'sessions#login'

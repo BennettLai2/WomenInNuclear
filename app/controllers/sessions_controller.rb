@@ -10,8 +10,9 @@ class SessionsController < ApplicationController
                 redirect_to accounts_path
             end
         else 
-            message = "Wrong username or password. "
-            redirect_to login_path, notice: message
+            flash[:error] = "Error: Wrong username or password. "
+            
+            redirect_to login_path
         end
     end
 end

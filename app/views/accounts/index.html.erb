@@ -1,9 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Account</h1>
+<h1> Hello, regular club member:  <%= current_user.first_name %> <%= current_user.last_name %> </h1>
 <table>
   <thead>
     <tr>
+      <th>ID</th>
       <th>First name</th>
       <th>Last name</th>
       <th>Email</th>
@@ -17,6 +18,7 @@
   <tbody>
     <% @accounts.each do |account| %>
       <tr>
+        <td><%= account.id %></td>
         <td><%= account.first_name %></td>
         <td><%= account.last_name %></td>
         <td><%= account.email %></td>
@@ -31,6 +33,7 @@
   </tbody>
 </table>
 
-<br>
+<h1> Points: <%= current_user.points %></h1>
 
-<%= link_to 'New Account', new_account_path %>
+
+<br>
