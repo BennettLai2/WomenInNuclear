@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   root 'accounts#index'
 
+  get '/admin', to: 'accounts#admin'
   get '/login', to: 'sessions#login'
   post '/login', to: 'sessions#create'
   post '/logout', to: 'sessions#destroy'
