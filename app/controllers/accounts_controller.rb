@@ -19,6 +19,7 @@ class AccountsController < ApplicationController
   def edit
   end
 
+  # GET /accounts/1/meeting
   def meeting
     @account = Account.find(params[:account_id])
   end
