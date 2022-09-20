@@ -1,12 +1,12 @@
 <h1>Attend Meeting</h1>
 
-<%= form_with(model: @account) do |form| %>
-  <% if @account.errors.any? %>
+<%= form_with(model: current_user) do |form| %>
+  <% if current_user.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@account.errors.count, "error") %> prohibited this account from being saved:</h2>
+      <h2><%= pluralize(current_user.errors.count, "error") %> prohibited this account from being saved:</h2>
 
       <ul>
-        <% @account.errors.each do |error| %>
+        <% current_user.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
@@ -23,13 +23,12 @@
 <%
 =end%>
 
-<h4>Current Points: <%= @account.points %></h4>
-<%= form.hidden_field :points, value: @account.points + 3 %>
+<h4>Current Points: <%= current_user.points %></h4>
+<%= form.hidden_field :points, value: current_user.points + 3 %>
 
 <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
 
-<%= link_to 'Show', @account %> |
 <%= link_to 'Back', accounts_path %>

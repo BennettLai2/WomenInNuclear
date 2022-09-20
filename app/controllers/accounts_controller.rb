@@ -21,7 +21,7 @@ class AccountsController < ApplicationController
 
   # GET /accounts/1/meeting
   def meeting
-    @account = Account.find(params[:account_id])
+  
   end
 
   # POST /accounts or /accounts.json
@@ -59,10 +59,6 @@ class AccountsController < ApplicationController
     end
   end
 
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/mahir_test
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_account
@@ -71,10 +67,6 @@ class AccountsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def account_params
-<<<<<<< HEAD
       params.require(:account).permit(:first_name, :last_name, :email, :password, :points, :admin)
-=======
-      params.require(:account).permit(:first_name, :last_name, :email, :password_digest, :points, :admin)
->>>>>>> origin/mahir_test
     end
 end

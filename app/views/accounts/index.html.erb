@@ -38,12 +38,16 @@
     <% end %>
   </tbody>
 </table>
-<% end%>
+<% end %>
 
-<h1> Points: <%= current_user.points %></h1>
+<h2> Points: <%= current_user.points %></h2>
 
 <br>
 <%= link_to 'View Events', events_path %>
+
 <br>
+<%= link_to 'Attend Meeting', account_meeting_path(current_user) %>
+
+<br> 
 <%= link_to 'Logout', "/logout" %>
 <br>

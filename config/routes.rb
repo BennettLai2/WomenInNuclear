@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :events
-  resources :accountsdo
+  resources :accounts do
     get "meeting"
   end
 
