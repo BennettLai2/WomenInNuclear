@@ -33,5 +33,12 @@
 </table>
 
 <br>
-
-<%= link_to 'New Event', new_event_path %>
+<% if current_user.admin %>
+  <%= link_to 'New Event', new_event_path %>
+<% end %>
+<br>
+<% if current_user.admin %>
+  <%= link_to 'Back', admin_path %>
+<% else %>
+  <%= link_to 'Back', accounts_path %>
+<% end %>

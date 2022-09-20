@@ -4,16 +4,16 @@ class SessionsController < ApplicationController
         @account = Account.find_by(email: params[:email])
         if !!@account && @account.authenticate(params[:password])
             session[:user_id] = @account.email
-
-            if (@account.admin)
-                redirect_to admin_path
-            else 
-                redirect_to accounts_path
-            end
+            redirect_to accounts_path
         else 
             flash[:error] = "Error: Wrong username or password. "
             
             redirect_to login_path
         end
+    end
+
+    def destroy
+        session[:user_id] = ""
+        redirect_to root_path
     end
 end

@@ -1,6 +1,12 @@
 <p id="notice"><%= notice %></p>
 
+<% if current_user.admin %>
+<h1> Hello, admin:  <%= current_user.first_name %> <%= current_user.last_name %> </h1>
+<% else %>
 <h1> Hello, regular club member:  <%= current_user.first_name %> <%= current_user.last_name %> </h1>
+<% end%>
+
+<% if current_user.admin %>
 <table>
   <thead>
     <tr>
@@ -32,8 +38,12 @@
     <% end %>
   </tbody>
 </table>
+<% end%>
 
 <h1> Points: <%= current_user.points %></h1>
 
-
+<br>
+<%= link_to 'View Events', events_path %>
+<br>
+<%= link_to 'Logout', "/logout" %>
 <br>
