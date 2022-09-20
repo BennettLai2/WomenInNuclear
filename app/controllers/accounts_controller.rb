@@ -4,9 +4,6 @@ class AccountsController < ApplicationController
   # GET /accounts or /accounts.json
   def index
     @accounts = Account.all
-    if !(!!@current_user)
-      redirect_to login_path
-    end
   end
 
   # GET /accounts/1 or /accounts/1.json

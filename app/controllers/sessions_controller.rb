@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
             if !@account.admin
                 redirect_to accounts_path
             else
-                redirect_to accounts_path
+                redirect_to login_path
             end
         else 
             flash[:error] = "Error: Wrong username or password. "
