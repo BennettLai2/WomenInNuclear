@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 2022_09_19_222050) do
-=======
 ActiveRecord::Schema.define(version: 2022_09_19_233232) do
->>>>>>> origin/dev/kiran-test
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +35,7 @@ ActiveRecord::Schema.define(version: 2022_09_19_233232) do
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
   end
 
 end

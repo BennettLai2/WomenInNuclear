@@ -5,16 +5,10 @@
 <table>
   <thead>
     <tr>
-<<<<<<< HEAD
-      <th>Meeting</th>
-      <th>Points</th>
       <th>Meeting name</th>
+      <th>Points</th>
       <th>Start time</th>
       <th>End time</th>
-      <th>Description</th>
-=======
-      <th>Event Name</th>
->>>>>>> origin/dev/kiran-test
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -22,10 +16,14 @@
   <tbody>
     <% @events.each do |event| %>
       <tr>
-        <td><%= event.name %></td>
-        <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to event.meeting_name, event %></td>
+        <td><%= event.points %></td>
+        <td><%= event.start_time %></td>
+        <td><%= event.end_time %></td>
+        <% if current_user.admin%>
+          <td><%= link_to 'Edit', edit_event_path(event) %></td>
+          <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -36,8 +34,4 @@
   <%= link_to 'New Event', new_event_path %>
 <% end %>
 <br>
-<% if current_user.admin %>
-  <%= link_to 'Back', admin_path %>
-<% else %>
-  <%= link_to 'Back', accounts_path %>
-<% end %>
+<%= link_to 'Back', accounts_path %>
