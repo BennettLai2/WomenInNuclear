@@ -4,14 +4,14 @@ one:
   first_name: MyString
   last_name: MyString
   email: MyString
-  password: MyString
-  points: 
+  password_digest: MyString
+  points: 1
   admin: false
 
 two:
   first_name: MyString
   last_name: MyString
   email: MyString
-  password: MyString
-  points: 
+  password_digest: MyString
+  points: 1
   admin: false

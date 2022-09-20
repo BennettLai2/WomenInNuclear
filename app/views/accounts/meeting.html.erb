@@ -1,0 +1,35 @@
+<h1>Attend Meeting</h1>
+
+<%= form_with(model: @account) do |form| %>
+  <% if @account.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@account.errors.count, "error") %> prohibited this account from being saved:</h2>
+
+      <ul>
+        <% @account.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<%
+=begin%>
+ In the future, we want the form label to be a meeting code that we can enter and check.
+ For this, we need to create a new entity -> Event
+ We have to check if the event written is inside of the Event table. If it is, we
+ are able to update the points (also grab the points from the event variable).
+ We just have to search for that certain event code. And if we can't find event
+ code, we just need to update as zero. 
+<%
+=end%>
+
+<h4>Current Points: <%= @account.points %></h4>
+<%= form.hidden_field :points, value: @account.points + 3 %>
+
+<div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<%= link_to 'Show', @account %> |
+<%= link_to 'Back', accounts_path %>

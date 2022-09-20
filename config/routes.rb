@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :events
-  resources :accounts
+  resources :accountsdo
+    get "meeting"
+  end
 
   root 'sessions#login'
 

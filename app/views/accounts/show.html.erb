@@ -16,8 +16,13 @@
 </p>
 
 <p>
+<<<<<<< HEAD
   <strong>Password:</strong>
   <%= @account.password %>
+=======
+  <strong>Password digest:</strong>
+  <%= @account.password_digest %>
+>>>>>>> origin/mahir_test
 </p>
 
 <p>
@@ -31,4 +36,5 @@
 </p>
 
 <%= link_to 'Edit', edit_account_path(@account) %> |
+<td><%= link_to 'Attend Meeting', account_meeting_path(@account) %></td> |
 <%= link_to 'Back', accounts_path %>
