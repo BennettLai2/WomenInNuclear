@@ -5,10 +5,7 @@
 <table>
   <thead>
     <tr>
-      <th>Start</th>
-      <th>End</th>
-      <th>Points</th>
-      <th>Url</th>
+      <th>Event Name</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,10 +13,7 @@
   <tbody>
     <% @events.each do |event| %>
       <tr>
-        <td><%= event.start %></td>
-        <td><%= event.end %></td>
-        <td><%= event.points %></td>
-        <td><%= event.url %></td>
+        <td><%= event.name %></td>
         <td><%= link_to 'Show', event %></td>
         <td><%= link_to 'Edit', edit_event_path(event) %></td>
         <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>

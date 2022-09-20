@@ -19,6 +19,10 @@ class EventsController < ApplicationController
   def edit
   end
 
+  def signup
+    @event = Event.find(params[:id])
+  end
+
   # POST /events or /events.json
   def create
     @event = Event.new(event_params)
@@ -65,6 +69,6 @@ class EventsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def event_params
-      params.require(:event).permit(:start, :end, :points, :url)
+      params.require(:event).permit(:name, :start, :end, :points, :url)
     end
 end
