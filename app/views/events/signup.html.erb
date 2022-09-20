@@ -1,0 +1,16 @@
+<h2> Sign Up </h2>
+
+<p>
+  <strong>Name:</strong>
+  <%= @event.name %>
+</p>
+
+<%= form_with do |form| %>
+    <div class="field">
+        <%= form.label :password %>
+        <%= form.text_field :password %>
+    </div>
+<% end %>
+
+<td><%= link_to 'Confirm Sign Up', @event %></td>
+

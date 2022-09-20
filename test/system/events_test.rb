@@ -30,12 +30,19 @@ class EventsTest < ApplicationSystemTestCase
     visit events_url
     click_on "Edit", match: :first
 
+<<<<<<< HEAD
     fill_in "Description", with: @event.description
     fill_in "End time", with: @event.end_time
     fill_in "Meeting", with: @event.meeting_id
     fill_in "Meeting name", with: @event.meeting_name
     fill_in "Points", with: @event.points
     fill_in "Start time", with: @event.start_time
+=======
+    fill_in "End", with: @event.end
+    fill_in "Points", with: @event.points
+    fill_in "Start", with: @event.start
+    fill_in "Url", with: @event.url
+>>>>>>> origin/dev/kiran-test
     click_on "Update Event"
 
     assert_text "Event was successfully updated"
