@@ -1,10 +1,11 @@
 <p id="notice"><%= notice %></p>
 
+<% if current_user.admin %>
 <p>
   <strong>Meeting:</strong>
   <%= @event.meeting_id %>
 </p>
-
+<% end %>
 <p>
   <strong>Points:</strong>
   <%= @event.points %>
