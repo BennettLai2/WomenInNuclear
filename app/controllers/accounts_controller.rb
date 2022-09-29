@@ -21,7 +21,12 @@ class AccountsController < ApplicationController
 
   # GET /accounts/1/meeting
   def meeting
-  
+    @account = Account.find(params[:account_id])
+    # Update once we merge Justin's code -> Change the meeting_name to meeting_id
+    # Got this to work, but there is a bug:
+    # A user can continuously click on attend meeting with the same code and keep updating their points -> Implement future
+    # ticket to fix this?
+    @event = Event.where(meeting_name: params[:event_id]).where("start_time <= :current_time AND end_time >= :current_time", {current_time: Time.now}).take
   end
 
   # POST /accounts or /accounts.json
@@ -69,4 +74,8 @@ class AccountsController < ApplicationController
     def account_params
       params.require(:account).permit(:first_name, :last_name, :email, :password, :points, :admin)
     end
+
+    # def event_id_params
+    #   params.require(:event).permit(:event_id)
+    # end
 end
