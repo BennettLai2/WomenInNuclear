@@ -25,6 +25,12 @@ class AccountsController < ApplicationController
     # Got this to work, but there is a bug:
     # A user can continuously click on attend meeting with the same code and keep updating their points -> Implement future
     # ticket to fix this?
+
+    # We have this logic? But we do not want to implement logic in controller.
+    # Problem is that we have to grab by the params[:event_id]. Can we use this 
+    # in the model? Ask TA
+    # https://canvas.tamu.edu/courses/184587/files/45720538?module_item_id=6401208 -> Check slides for example
+
     @event = Event.where(meeting_id: params[:event_id]).where("start_time <= :current_time AND end_time >= :current_time", {current_time: Time.now}).take
   end
 

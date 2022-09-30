@@ -1,29 +1,29 @@
 <h1>Attend Meeting</h1>
-
-<% if @event&.start_time && Time.now >= @event.start_time && Time.now <= @event.end_time%>
-  <%= form_with(model: current_user) do |form| %>
-  <% if current_user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(current_user.errors.count, "error") %> prohibited this account from being saved:</h2>
-
-      <ul>
-        <% current_user.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%
+=begin%>
+ Do I need to change this logic? Move it into the controller? And just have the view render variables?
+Use logic in controller and populate variable and then render those variables? Don't really see how 
+in this scenario at the moment. Honestly, does not make sense to change IMO b/c we are rendering
+two different scenarios (does the meeting exist with a name? or is it null). It would make sense
+if we could change the values (such as the points, name, etc.) but when it is null, we just want
+to display a message rather than the values themselves
+https://drive.google.com/file/d/1MYBVIHty1nXfDghmTnplLR6ehuYKjQ6l/view -> Check slides for example
+<%
+=end%>
+<% if @event&.meeting_name%>
 
   <h4>Current Points: <%= current_user.points%></h4>
   <h4>Meeting Name: <%= @event.meeting_name %></h4>
   <p>Meeting Description: <%= @event.description %></p>
   <p> Meeting Point Value: <%= @event.points %></p>
-  <%= form.hidden_field :points, value: current_user.points + @event.points%>  
 
+  <%= form_with(model: current_user) do |form| %>
+  <%= form.hidden_field :points, value: current_user.points + @event.points%>  
   <div class="actions">
       <%= form.submit %>
   </div>
   <% end %>
+  
 <% else %>
   <h3>Meeting ID Does Not Exist Or Time Has Run Out!</h3>
 <% end %>
