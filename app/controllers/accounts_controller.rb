@@ -27,12 +27,15 @@ class AccountsController < ApplicationController
   # POST /accounts or /accounts.json
   def create
     @account = Account.new(account_params)
-
-    if @account.save
-      session[:user_id] = @account.email
-      redirect_to root_path
-    else
-      render :new
+    begin
+      if @account.save
+        session[:user_id] = @account.email
+        redirect_to root_path
+      else
+        render :new
+      end
+    rescue 
+      redirect_to root_path, notice: "Email Already Exists."
     end
   end
 
