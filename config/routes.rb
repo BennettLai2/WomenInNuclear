@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :milestones
   resources :events
   resources :accounts do
     get "meeting"
