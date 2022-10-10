@@ -1,10 +1,60 @@
 <div>
     <h1> Welcome to Women In Nuclear </h1>
-</div>   
+</div> 
+
 <% if user_signed_in? %>
     <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
     <%= link_to 'Edit Profile', edit_user_registration_path %>
+    
+    <% if current_user.admin %>
+    <h1> Hello, admin:  <%= current_user.first_name %> <%= current_user.last_name %> </h1>
+    <% else %>
+    <h1> Hello, regular club member:  <%= current_user.first_name %> <%= current_user.last_name %> </h1>
+    <% end%>
+
+    <% if current_user.admin %>
+    <table>
+    <thead>
+        <tr>
+        <th>ID</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Email</th>
+        <th>Password</th>
+        <th>Points</th>
+        <th>Admin</th>
+        <th colspan="3"></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% @users.each do |user| %>
+        <tr>
+            <td><%= user.id %></td>
+            <td><%= user.first_name %></td>
+            <td><%= user.last_name %></td>
+            <td><%= user.email %></td>
+            <td><%= user.password %></td>
+            <td><%= user.points %></td>
+            <td><%= user.admin %></td>
+            <td><%= link_to 'Show', root_path %></td>
+            <td><%= link_to 'Destroy', root_path, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+        <% end %>
+    </tbody>
+    </table>
+    <% end %>
+
+    <h2> Points: <%= current_user.points %></h2>
+
+    <br>
+    <%= link_to 'View Events', events_path %>
+
+    <br>
+    <%= link_to 'Attend Meeting', account_meeting_path(current_user) %> 
+
 <% else %>
     <%= link_to 'Sign Up', new_user_registration_path %>
     <%= link_to 'Sign In', new_user_session_path %>
 <% end %>
+
