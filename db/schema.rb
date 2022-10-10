@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2022_09_19_233232) do
     t.string "last_name"
     t.string "email"
     t.string "password_digest"
-    t.integer "points"
+    t.integer "points", default: 0
     t.boolean "admin"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
