@@ -1,16 +1,10 @@
 <div>
-    <% flash.each do |type, msg| %>
-        <div>
-          <%= msg %>
-        </div>
-    <% end %>
-      
-    <h2> Login </h2>
-    <%= form_tag '/login' do %>
-        Email:  <%= text_field_tag :email %> <br>
-        Password: <%= password_field_tag :password%> <br>
-        <%= submit_tag "Login" %>
-    <% end %>
-</div>
-
-<%= link_to 'New Account', new_account_path %>
+    <h1> Welcome to Women In Nuclear </h1>
+</div>   
+<% if user_signed_in? %>
+    <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
+    <%= link_to 'Edit Profile', edit_user_registration_path %>
+<% else %>
+    <%= link_to 'Sign Up', new_user_registration_path %>
+    <%= link_to 'Sign In', new_user_session_path %>
+<% end %>
