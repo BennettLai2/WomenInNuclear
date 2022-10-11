@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
   get 'users/index'
-  devise_for :users
-  resources :events
-  resources :accounts do
-    get "meeting"
+  devise_for :users do
+    post "meeting"
   end
+  resources :events
 
   root 'sessions#login'
 
