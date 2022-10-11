@@ -21,7 +21,25 @@ class AccountsController < ApplicationController
 
   # GET /accounts/1/meeting
   def meeting
-    @current_user = Account.find(params[:account_id])
+    @account = Account.find(params[:account_id])
+    @event = Event.with_valid_time(params[:event_id]);
+    # Got this to work, but there is a bug:
+    # A user can continuously click on attend meeting with the same code and keep updating their points -> Implement future
+    # ticket to fix this?
+  end
+
+  def resetpoints
+  end
+
+  def resetpointsconfirm
+    @email_confirmation = params[:confirmation_id]
+    @real_admin_email = Account.find(params[:account_id]).email
+    if @email_confirmation == @real_admin_email
+      Account.update_all(points: 0)
+      redirect_to accounts_url, notice: "Operation Succeeded: Points have been reset to 0"
+    else
+      redirect_to accounts_url, notice: "Operation Failed: Email is incorrect, points have not been changed"
+    end
   end
 
   # POST /accounts or /accounts.json

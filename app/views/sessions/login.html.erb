@@ -43,6 +43,10 @@
         <% end %>
     </tbody>
     </table>
+
+    <br>
+    <%= link_to 'Reset Points', session_resetpoints_path(current_user.id) %>
+    <br>
     <% end %>
 
     <h2> Points: <%= current_user.points %></h2>
@@ -51,7 +55,14 @@
     <%= link_to 'View Events', events_path %>
 
     <br>
-    <%= link_to 'Attend Meeting', account_meeting_path(current_user) %> 
+    <%= form_with url: session_meeting_path(current_user.id), local: true, method: :post do %>
+  <div>
+    <strong><%= label_tag "event_id", "Event ID" %></strong>
+    <%= text_field_tag "event_id", nil %>
+  </div>
+
+  <%= submit_tag "Attend Meeting" %>
+<% end %>
 
 <% else %>
     <%= link_to 'Sign Up', new_user_registration_path %>

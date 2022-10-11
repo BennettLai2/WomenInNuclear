@@ -1,0 +1,15 @@
+<h1>Reset Points</h1>
+<h4>Please enter email here to confirm resetting all members' points to 0</h4>
+<h4>Keep in mind that this action is irreversible</h4>
+
+<%= form_with url: account_resetpointsconfirm_path, local: true, method: :post do %>
+  <div>
+    <strong><%= label_tag "confirmation_id", "Enter Email" %></strong>
+    <%= text_field_tag "confirmation_id", nil %>
+  </div>
+
+  <%= submit_tag "Reset Points" %>
+<% end %>
+
+<br>
+<%= link_to 'Back', accounts_path %>
