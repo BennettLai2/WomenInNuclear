@@ -1,13 +1,13 @@
 <h1>Attend Meeting USER</h1>
 <% if @event&.meeting_name%>
 
-  <h4>Current Points: <%= @user.points%></h4>
+  <h4>Current Points: <%= current_user.points%></h4>
   <h4>Meeting Name: <%= @event.meeting_name %></h4>
   <p>Meeting Description: <%= @event.description %></p>
   <p> Meeting Point Value: <%= @event.points %></p>
 
 
- <%= form_with(model: @user) do |form| %>
+ <%= form_with(model: current_user) do |form| %>
   <%= form.hidden_field :points, value: @user.points + @event.points%>  
    <div class="actions">
       <%= form.submit %>
