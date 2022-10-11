@@ -21,7 +21,7 @@ class AccountsController < ApplicationController
 
   # GET /accounts/1/meeting
   def meeting
-  
+    @current_user = Account.find(params[:account_id])
   end
 
   # POST /accounts or /accounts.json
