@@ -1,0 +1,2 @@
+class PersonMilestoneMap < ApplicationRecord
+end

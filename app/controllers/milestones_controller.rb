@@ -25,6 +25,9 @@ class MilestonesController < ApplicationController
 
     respond_to do |format|
       if @milestone.save
+        Account.where("points >= ?", milestone_params['points']).find_each do |account|
+          PersonMilestoneMap.where(person_id: account.id, milestone_id: @milestone.id).first_or_create
+        end
         format.html { redirect_to milestone_url(@milestone), notice: "Milestone was successfully created." }
         format.json { render :show, status: :created, location: @milestone }
       else
@@ -38,6 +41,9 @@ class MilestonesController < ApplicationController
   def update
     respond_to do |format|
       if @milestone.update(milestone_params)
+        Account.where("points >= ?", milestone_params['points']).find_each do |account|
+          PersonMilestoneMap.where(person_id: account.id, milestone_id: @milestone.id).first_or_create
+        end
         format.html { redirect_to milestone_url(@milestone), notice: "Milestone was successfully updated." }
         format.json { render :show, status: :ok, location: @milestone }
       else

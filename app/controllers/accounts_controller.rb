@@ -40,6 +40,10 @@ class AccountsController < ApplicationController
   def update
     respond_to do |format|
       if @account.update(account_params)
+        Milestone.where("points <= ?", account_params['points']).find_each do |milestone|
+          PersonMilestoneMap.where(person_id: @account.id, milestone_id: milestone.id).first_or_create
+        end
+
         format.html { redirect_to account_url(@account), notice: "Account was successfully updated." }
         format.json { render :show, status: :ok, location: @account }
       else

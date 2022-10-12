@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Person:</strong>
+  <%= @person_milestone_map.person_id %>
+</p>
+
+<p>
+  <strong>Milestone:</strong>
+  <%= @person_milestone_map.milestone_id %>
+</p>
+
+<%= link_to 'Edit', edit_person_milestone_map_path(@person_milestone_map) %> |
+<%= link_to 'Back', person_milestone_maps_path %>
