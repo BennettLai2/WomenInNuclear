@@ -2,8 +2,22 @@ class AccountsController < ApplicationController
   before_action :set_account, only: %i[ show edit update destroy ]
 
   # GET /accounts or /accounts.json
+  
   def index
     @accounts = Account.all
+
+    if params[:search_by_first_name] && params[:search_by_first_name] != ""
+      @accounts = Account.where('first_name LIKE ?', "%#{params[:search_by_first_name]}%")
+    end 
+
+    if params[:search_by_last_name] && params[:search_by_last_name] != ""
+      @accounts = Account.where('last_name LIKE ?', "%#{params[:search_by_last_name]}%").and(Account.where('first_name LIKE ?', "%#{params[:search_by_first_name]}%"))
+    end
+
+  end
+
+  def leaderboard
+    @accounts = Account.all.order('points DESC')
   end
 
   # GET /accounts/1 or /accounts/1.json
