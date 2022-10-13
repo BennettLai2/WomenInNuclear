@@ -3,7 +3,12 @@ Rails.application.routes.draw do
   devise_for :users do
     post "meeting"
   end
-  
+  devise_scope :user do 
+    match '/sessions/user', to: 'devise/sessions#create', via: :post
+  end  
+  match 'users/:id' => 'users#destroy', :via => :delete, :as => :admin_destroy_user
+  match 'users/:id' => 'users#make_admin', :via => :put, :as => :make_admin
+
   resources :events
   resources :accounts do
     post "meeting"
