@@ -1,0 +1,27 @@
+<%= form_with(model: person_milestone_map) do |form| %>
+  <% if person_milestone_map.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(person_milestone_map.errors.count, "error") %> prohibited this person_milestone_map from being saved:</h2>
+
+      <ul>
+        <% person_milestone_map.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :person_id %>
+    <%= form.number_field :person_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :milestone_id %>
+    <%= form.number_field :milestone_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

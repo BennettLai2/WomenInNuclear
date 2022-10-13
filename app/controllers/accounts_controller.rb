@@ -35,18 +35,39 @@ class AccountsController < ApplicationController
 
   # GET /accounts/1/meeting
   def meeting
-  
+    @account = Account.find(params[:account_id])
+    @event = Event.with_valid_time(params[:event_id]);
+    # Got this to work, but there is a bug:
+    # A user can continuously click on attend meeting with the same code and keep updating their points -> Implement future
+    # ticket to fix this?
+  end
+
+  def resetpoints
+  end
+
+  def resetpointsconfirm
+    @email_confirmation = params[:confirmation_id]
+    @real_admin_email = Account.find(params[:account_id]).email
+    if @email_confirmation == @real_admin_email
+      Account.update_all(points: 0)
+      redirect_to accounts_url, notice: "Operation Succeeded: Points have been reset to 0"
+    else
+      redirect_to accounts_url, notice: "Operation Failed: Email is incorrect, points have not been changed"
+    end
   end
 
   # POST /accounts or /accounts.json
   def create
     @account = Account.new(account_params)
-
-    if @account.save
-      session[:user_id] = @account.email
-      redirect_to root_path
-    else
-      render :new
+    begin
+      if @account.save
+        session[:user_id] = @account.email
+        redirect_to root_path
+      else
+        render :new
+      end
+    rescue 
+      redirect_to root_path, notice: "Email Already Exists."
     end
   end
 
@@ -54,6 +75,10 @@ class AccountsController < ApplicationController
   def update
     respond_to do |format|
       if @account.update(account_params)
+        Milestone.where("points <= ?", account_params['points']).find_each do |milestone|
+          PersonMilestoneMap.where(person_id: @account.id, milestone_id: milestone.id).first_or_create
+        end
+
         format.html { redirect_to account_url(@account), notice: "Account was successfully updated." }
         format.json { render :show, status: :ok, location: @account }
       else

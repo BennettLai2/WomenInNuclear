@@ -1,34 +1,22 @@
 <h1>Attend Meeting</h1>
+<% if @event&.meeting_name%>
 
-<%= form_with(model: current_user) do |form| %>
-  <% if current_user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(current_user.errors.count, "error") %> prohibited this account from being saved:</h2>
+  <h4>Current Points: <%= current_user.points%></h4>
+  <h4>Meeting Name: <%= @event.meeting_name %></h4>
+  <p>Meeting Description: <%= @event.description %></p>
+  <p> Meeting Point Value: <%= @event.points %></p>
 
-      <ul>
-        <% current_user.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-<%
-=begin%>
- In the future, we want the form label to be a meeting code that we can enter and check.
- For this, we need to create a new entity -> Event
- We have to check if the event written is inside of the Event table. If it is, we
- are able to update the points (also grab the points from the event variable).
- We just have to search for that certain event code. And if we can't find event
- code, we just need to update as zero. 
-<%
-=end%>
-
-<h4>Current Points: <%= current_user.points %></h4>
-<%= form.hidden_field :points, value: current_user.points + 3 %>
-
-<div class="actions">
-    <%= form.submit %>
+  <%= form_with(model: current_user) do |form| %>
+  <%= form.hidden_field :points, value: current_user.points + @event.points%>  
+  <div class="actions">
+      <%= form.submit %>
   </div>
+  <% end %>
+  
+<% else %>
+  <h3>Meeting ID Does Not Exist Or Time Has Run Out!</h3>
 <% end %>
+
+
 
 <%= link_to 'Back', accounts_path %>
