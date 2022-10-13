@@ -22,7 +22,7 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 gem 'devise', '~> 4.8', '>= 4.8.1'
-
+gem 'seed_dump'
 gem 'validates_timeliness', '~> 6.0.0.beta2'
 
 # Use Active Storage variant

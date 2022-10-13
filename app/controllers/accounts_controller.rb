@@ -108,11 +108,8 @@ class AccountsController < ApplicationController
     def account_params
       params.require(:account).permit(:first_name, :last_name, :email, :password, :points, :admin)
     end
-<<<<<<< HEAD
 
     # def event_id_params
     #   params.require(:event).permit(:event_id)
     # end
-=======
->>>>>>> 28e557e8f244300f5b09839deeacf3f7b330a012
 end
