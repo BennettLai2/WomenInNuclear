@@ -1,15 +1,19 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
 * Ruby version: 3.0.2
 
-* System dependencies
+* To Run Locally:
+    * bundle install
+    * rails db:create
+    * rails db:migrate
+    * rails server --binding=0.0.0.0
 
-* Configuration
+* System dependencies
+    * All dependecies are listed in the Gemfile
+    * Use bundle install to install dependencies
+
+* Configuration:
+    * Docker (with ruby on rails and postgressql)
 
 * Database creation and Initialization
     * To create the database, run the following command: rails db:create
@@ -27,7 +31,12 @@ Things you may want to cover:
         - rubocop: Test for formatting errors in certain directory (linter)
 
 * Services (job queues, cache servers, search engines, etc.)
+    * Can add members, update points (attend meetings), check current points of members,
+    search members, create meetings, check milestones reached (and create milestones),
+    sort members in a leaderboard, make members admins, reset points, and view events
 
 * Deployment instructions
+    * The application is deployed in Heroku. When code is pushed to main, the Heroku
+    link is automatically updated.
 
 * ...
