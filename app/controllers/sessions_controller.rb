@@ -10,6 +10,7 @@ class SessionsController < ApplicationController
         @users = User.where('last_name LIKE ?', "%#{params[:search_by_last_name]}%").and(User.where('first_name LIKE ?', "%#{params[:search_by_first_name]}%"))
       end
     end
+
     def meeting
         @user = User.find(params[:session_id])
         # Got this to work, but there is a bug:
@@ -32,4 +33,7 @@ class SessionsController < ApplicationController
       end
     end
 
+    def leaderboard
+        @users = User.all.order('points DESC')
+      end
 end

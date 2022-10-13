@@ -45,6 +45,7 @@ class UsersController < ApplicationController
 
   # DELETE /accounts/1 or /accounts/1.json
   def destroy
+    @user = User.find(params[:id])
     @user.destroy
 
     respond_to do |format|
@@ -52,6 +53,16 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def make_admin
+    @user = User.find(params[:id])
+    @user.update(admin: true)
+    respond_to do |format|
+      format.html { redirect_to root_path, notice: "Made user admin" }
+      format.json { head :no_content }
+    end
+  end
+
 
   private
 
