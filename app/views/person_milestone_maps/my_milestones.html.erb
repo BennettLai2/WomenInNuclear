@@ -1,0 +1,26 @@
+<h1>Milestones</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Points</th>
+      <th>Message</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @milestones.each do |milestone| %>
+      <tr>
+        <td><%= milestone.name %></td>
+        <td><%= milestone.points %></td>
+        <td><%= milestone.message %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<%= link_to 'Back', root_path %>
+<br>

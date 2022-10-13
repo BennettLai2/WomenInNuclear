@@ -31,6 +31,9 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     respond_to do |format|
       if @user.update(account_params)
+        Milestone.where("points <= ?", account_params['points']).find_each do |milestone|
+          PersonMilestoneMap.where(person_id: @user.id, milestone_id: milestone.id).first_or_create
+        end
         format.html { redirect_to root_path, notice: "Account was successfully updated." }
         format.json { render :show, status: :ok, location: @user }
       else

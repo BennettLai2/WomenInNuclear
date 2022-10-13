@@ -7,7 +7,7 @@ class CreateAccounts < ActiveRecord::Migration[6.1]
       t.string :password_digest
       t.integer :points, :default =>  0
       t.boolean :admin
-
+      
       t.timestamps
       t.index :email, unique: true
     end

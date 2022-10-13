@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Person Milestone Maps</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Person</th>
+      <th>Milestone</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @person_milestone_maps.each do |person_milestone_map| %>
+      <tr>
+        <td><%= person_milestone_map.person_id %></td>
+        <td><%= person_milestone_map.milestone_id %></td>
+        <td><%= link_to 'Show', person_milestone_map %></td>
+        <td><%= link_to 'Edit', edit_person_milestone_map_path(person_milestone_map) %></td>
+        <td><%= link_to 'Destroy', person_milestone_map, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Person Milestone Map', new_person_milestone_map_path %>
