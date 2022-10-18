@@ -20,17 +20,18 @@
     <%= form.label :points %>
     <%= form.number_field :points %>
   </div>
-
+  
   <div class="field">
     <%= form.label :meeting_name %>
     <%= form.text_field :meeting_name %>
   </div>
-
+ 
+ 
   <div class="field">
     <%= form.label :start_time %>
-    <%= form.datetime_select :start_time %>
+    <%= form.datetime_select :start_time  %>
   </div>
-
+  
   <div class="field">
     <%= form.label :end_time %>
     <%= form.datetime_select :end_time, :default => Time.now + 1.hours %>
