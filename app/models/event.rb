@@ -2,7 +2,7 @@ class Event < ApplicationRecord
 
   before_create :set_defaults
   
-  validates :meeting_name, presence: true
+  validates :meeting_name, :meeting_id, :description, presence: true
   validates :points, numericality: {:greater_than_or_equal_to => 0}
   validates_datetime :start_time, on: :create, on_or_after: :today
   validates_datetime :end_time, after: :start_time
@@ -22,3 +22,6 @@ class Event < ApplicationRecord
   
   
 end
+
+
+
