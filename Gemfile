@@ -26,7 +26,7 @@ gem 'seed_dump'
 gem 'validates_timeliness', '~> 6.0.0.beta2'
 gem 'rexml'
 gem 'rspec-rails'
-gem 'brakeman'
+# gem 'brakeman'
 gem 'rubocop'
 
 # Use Active Storage variant
