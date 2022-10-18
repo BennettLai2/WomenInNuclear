@@ -17,11 +17,7 @@ class AccountsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create account" do
     assert_difference('Account.count') do
-<<<<<<< HEAD
-      post accounts_url, params: { account: { admin: @account.admin, email: @account.email, first_name: @account.first_name, last_name: @account.last_name, password: @account.password, points: @account.points } }
-=======
       post accounts_url, params: { account: { admin: @account.admin, email: @account.email, first_name: @account.first_name, last_name: @account.last_name, password_digest: @account.password_digest, points: @account.points } }
->>>>>>> origin/mahir_test
     end
 
     assert_redirected_to account_url(Account.last)
