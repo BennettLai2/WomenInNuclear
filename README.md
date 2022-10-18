@@ -27,7 +27,7 @@
     * To run the test suite run the following commands:
         - rspec spec/feature/integration_spec.rb: Integration tests
         - SimpleCov.start: Testing code coverage
-        - brakeman: (maybe add this later by adding to gem file)
+        - brakeman: Security
         - rubocop: Test for formatting errors in certain directory (linter)
 
 * Services (job queues, cache servers, search engines, etc.)
