@@ -145,7 +145,6 @@ RSpec.describe 'Admin point reset', type: :feature do
     end
   end
 
-=end
 
 #PROBLEMATIC!!
 =begin
