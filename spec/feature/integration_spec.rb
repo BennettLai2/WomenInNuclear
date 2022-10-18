@@ -145,6 +145,7 @@ RSpec.describe 'Admin point reset', type: :feature do
     end
   end
 
+=end
 
 #PROBLEMATIC!!
 =begin
@@ -157,7 +158,7 @@ RSpec.describe 'User attends an event and earns points', type: :feature do
   
  
   fill_in 'event_meeting_name', with: 'First meeting'
-  fill_in 'Start time', with: '2023-12-04 09:30:00'
+  fill_in 'event_start_time', with: '2023-12-04 09:30:00'
   fill_in 'event_end_time', with: '2023-12-04 10:30:00'
   fill_in 'event_description', with: 'First meeting of the semester!'
   click_on 'Create Event'

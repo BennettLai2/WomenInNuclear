@@ -2,17 +2,11 @@ require 'rails_helper'
 
 RSpec.describe Event, type: :model do
   subject do
-    described_class.new(meeting_id: 123, points: '1', meeting_name: 'First Meeting', start_time: '2023-12-04 09:30:00',
-    end_time: '2023-12-04 10:30:00', description: 'First meeting of the semester, there will be pizza!')
+    described_class.new(points: '1', meeting_name: 'First Meeting', start_time: '2023-12-04 09:30:00', end_time: '2023-12-04 10:30:00')
   end
 
   it 'is valid with all valid attributes' do
     expect(subject).to be_valid
-  end
-
-  it 'is not valid without a meeting id' do
-    subject.meeting_id = nil
-    expect(subject).not_to be_valid
   end
 
   it 'is not valid without points' do
@@ -35,10 +29,6 @@ RSpec.describe Event, type: :model do
     expect(subject).not_to be_valid
   end
 
-  it 'is not valid without meeting description' do
-    subject.description = nil
-    expect(subject).not_to be_valid
-  end
 end
 
 RSpec.describe User, type: :model do
