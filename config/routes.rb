@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :meetinglogs
   resources :person_milestone_maps
   resources :milestones
   get 'users/index'
