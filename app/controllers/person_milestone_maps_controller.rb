@@ -20,7 +20,7 @@ class PersonMilestoneMapsController < ApplicationController
   end
 
   def my_milestones
-    @milestones = Milestone.joins("INNER JOIN Person_Milestone_Maps on person_milestone_maps.milestone_id = milestones.id")
+    @milestones = Milestone.joins("INNER JOIN Person_Milestone_Maps ON person_milestone_maps.milestone_id = milestones.id WHERE person_milestone_maps.person_id = #{current_user.id}")
   end
 
   # POST /person_milestone_maps or /person_milestone_maps.json
