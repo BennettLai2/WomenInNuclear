@@ -1,19 +1,40 @@
-<h2> Leader Board</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href=
+"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">     
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>     
+    <script src=
+"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">
+    </script>     
+    <script src=
+"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
+    </script>
+</head>
+<body style="background-color:#C0C0C0">
 
-<table>
+<div class="jumbotron text-center" style="color:#3399ff">
+  <h2>Leaderboard</h2>
+</div>
+
+<table class="table table-striped">
 <tbody>
+
     <thead>
         <th> </th>
-        <th> First Name </th>
-        <th> Last Name </th>
-        <th> Email </th>
-        <th> Points </th>
+        <th scope="col" style="color:#3399ff"> First Name </th>
+        <th scope="col" style="color:#3399ff"> Last Name </th>
+        <th scope="col" style="color:#3399ff"> Email </th>
+        <th scope="col" style="color:#3399ff"> Points </th>
 
-    </thead>
-    
+    </thead>    
     <% @users.each_with_index do |user, index| %>
         <tr>
-        <td><%= index + 1 %></td>
+        <td style="color:#3399ff"><%= index + 1 %></td>
         <td><%= user.first_name %></td> 
         <td><%= user.last_name %> </td>
         <td><%= user.email %> </td>
@@ -22,8 +43,10 @@
     <% end %>
 </tbody>
 </table>
-
-<%= link_to 'Back', root_path %>
-
-
-
+</div>
+<div class="text-center">
+<button type="button" class="btn btn-light">
+    <%= link_to 'Back', root_path %>
+</button>
+</div>
+</body>
