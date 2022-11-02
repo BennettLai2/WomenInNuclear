@@ -18,7 +18,10 @@ class MeetinglogsController < ApplicationController
   # GET /meetinglogs/1/edit
   def edit
   end
-
+  # POST /meetinglogs/new
+  def newp
+  end
+  
   # POST /meetinglogs or /meetinglogs.json
   def create
     @meetinglog = Meetinglog.new(meetinglog_params)

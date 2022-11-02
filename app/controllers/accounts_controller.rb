@@ -37,6 +37,7 @@ class AccountsController < ApplicationController
   def meeting
     @account = Account.find(params[:account_id])
     @event = Event.with_valid_time(params[:event_id]);
+	@meeting = Meetinglog
     # Got this to work, but there is a bug:
     # A user can continuously click on attend meeting with the same code and keep updating their points -> Implement future
     # ticket to fix this?
