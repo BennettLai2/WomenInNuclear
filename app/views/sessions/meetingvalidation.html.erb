@@ -1,22 +1,18 @@
 <h1>Meeting Validation</h1>
 
+<% if @event&.meeting_name%>
   <h4>Current Points: <%= current_user.points%></h4>
   <h4>Meeting Name: <%= @event.meeting_name %></h4>
   <p>Meeting Description: <%= @event.description %></p>
-  <p> Meeting Point Value: <%= @event.points %></p>
+  <p>Meeting Point Value: <%= @event.points %></p>
   
-<% if @entry %>
-
-  <h4>Meeting already logged</h4>
-
+  <% if @entry %>
+    <h4>Meeting already attended</h4>
+  <% else %>
+    <h3>Meeting not attended</h3>
+	<%= render 'meetinglogs/form', :meetinglog => @meetinglog %>
+  <% end %>
 <% else %>
-  <h3>Meeting not attended</h3>
-  <%= form_with(url: new_meetinglog_path, method: "post") do |form| %>
-  <%= form.text_field :user_id, value: @user.id%> 
-  <%= form.text_field :meeting_id, value: @event.meeting_id%>  
-   <div class="actions">
-      <%= form.submit %>
-  </div>
-  <% end %> 
+  <h3>Meeting ID Does Not Exist Or Time Has Run Out!</h3>
 <% end %>
 <%= link_to 'Back', root_path %>

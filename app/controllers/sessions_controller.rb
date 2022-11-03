@@ -21,11 +21,10 @@ class SessionsController < ApplicationController
     end
 	
 	def meetingvalidation
-		@user = User.find(params[:session_id])
+		@user = current_user
 		@event = Event.where(meeting_id: params[:event_id]).where("start_time <= :current_time AND end_time >= :current_time", {current_time: Time.now}).take
-		@entry = Meetinglog.where(user_id: @user.id, meeting_id: @event.meeting_id).exists?
-		
-		#redirect_to meeting_path notice: "Meeting has already been attended"
+		@entry = Meetinglog.where(user_id: @user.id, meeting_id: params[:event_id]).exists?
+		@meetinglog = Meetinglog.new
 	
 	end
 

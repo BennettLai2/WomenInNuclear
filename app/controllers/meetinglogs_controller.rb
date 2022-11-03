@@ -28,7 +28,7 @@ class MeetinglogsController < ApplicationController
 
     respond_to do |format|
       if @meetinglog.save
-        format.html { redirect_to meetinglog_url(@meetinglog), notice: "Meetinglog was successfully created." }
+        format.html { redirect_to session_meeting_path(current_user), notice: "Meetinglog was successfully created." }
         format.json { render :show, status: :created, location: @meetinglog }
       else
         format.html { render :new, status: :unprocessable_entity }
