@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     match '/sessions/user', to: 'devise/sessions#create', via: :post
   end  
   match 'users/:id' => 'users#destroy', :via => :delete, :as => :admin_destroy_user
-  match 'users/:id' => 'users#make_admin', :via => :put, :as => :make_admin
+  match 'users/:id' => 'users#toggle_admin', :via => :put, :as => :toggle_admin
 
   resources :events
   resources :accounts do
