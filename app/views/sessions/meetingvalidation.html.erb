@@ -7,12 +7,12 @@
   <p>Meeting Point Value: <%= @event.points %></p>
   
   <% if @entry %>
-    <h4>Meeting already attended</h4>
+    <h4>Error! Meeting already attended!</h4>
   <% else %>
-    <h3>Meeting not attended</h3>
-	<%= render 'meetinglogs/form', :meetinglog => @meetinglog %>
+    <h3>Success! Meeting has been attended</h3>
+	
   <% end %>
 <% else %>
-  <h3>Meeting ID Does Not Exist Or Time Has Run Out!</h3>
+  <h3>Error! Meeting ID does not exist or Time has run out!</h3>
 <% end %>
 <%= link_to 'Back', root_path %>
