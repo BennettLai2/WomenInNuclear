@@ -1,19 +1,51 @@
-<p id="notice"><%= notice %></p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href=
+"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">     
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>     
+    <script src=
+"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">
+    </script>     
+    <script src=
+"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
+    </script>
+</head>
 
-<p>
-  <strong>Name:</strong>
-  <%= @milestone.name %>
-</p>
+<body style="background-color:#C0C0C0">
 
-<p>
-  <strong>Points:</strong>
-  <%= @milestone.points %>
-</p>
+  <div class="container">
+    <div class="card">
+      <div class="card-body">
+        <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Message:</strong>
-  <%= @milestone.message %>
-</p>
+        <h4>
+          <strong>Name:</strong>
 
-<%= link_to 'Edit', edit_milestone_path(@milestone) %> |
-<%= link_to 'Back', milestones_path %>
+          <small class="pl-1"><%= @milestone.name %></small>
+        </h4>
+        
+
+        <h4>
+          <strong>Points:</strong>
+          <small class="pl-1"><%= @milestone.points %></small>
+        </h4>
+
+        <h4>
+          <strong>Message:</strong>
+          <small class="pl-1"><%= @milestone.message %></small>
+        </h4>
+
+        <div class="text-center">
+        <%= link_to 'Edit', edit_milestone_path(@milestone), {class: "btn btn-light "} %>
+        <%= link_to 'Back', milestones_path, {class: "btn btn-info ml-3"} %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
