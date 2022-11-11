@@ -1,3 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href=
+"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">     
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>     
+    <script src=
+"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">
+    </script>     
+    <script src=
+"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
+    </script>
+</head>
+
+<body style="background-color:#C0C0C0">
+
 <%= form_with(model: milestone) do |form| %>
   <% if milestone.errors.any? %>
     <div id="error_explanation">
@@ -11,22 +31,30 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+  <div class="card">
+    <div class="card-body">
 
-  <div class="field">
-    <%= form.label :points %>
-    <%= form.number_field :points %>
-  </div>
+      <div class="field mb-3">
+        <%= form.label :name, { class: "form-label"} %>
+        <%= form.text_field :name, { class: "form-control"} %>
+      </div>
 
-  <div class="field">
-    <%= form.label :message %>
-    <%= form.text_field :message %>
-  </div>
+      <div class="field mb-3">
+        <%= form.label :points, { class: "form-label"} %>
+        <%= form.number_field :points, { class: "form-control"} %>
+      </div>
 
-  <div class="actions">
-    <%= form.submit %>
+      <div class="field mb-3">
+        <%= form.label :message, { class: "form-label"} %>
+        <%= form.text_field :message, { class: "form-control"} %>
+      </div>
+
+      <div class="actions">
+        <%= form.submit "Submit", class: "btn btn-primary" %>
+      </div>
+
+    </div>
   </div>
 <% end %>
+
+</body>
