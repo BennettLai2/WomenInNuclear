@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :meetinglogs
   resources :person_milestone_maps
   resources :milestones
   get 'users/index'
@@ -20,10 +21,12 @@ Rails.application.routes.draw do
   resources :users
   resources :sessions do
     post "meeting"
+	post "meetingvalidation"
   end
 
   resources :sessions do
     post "meeting"
+	post "meetingvalidation"
     get "resetpoints"
     post "resetpointsconfirm"
   end
@@ -40,4 +43,5 @@ Rails.application.routes.draw do
   get "/signup/:id", to: 'events#signup', as: 'signup'
   get '/leaderboard', to: 'sessions#leaderboard'
   get "/:id/mymilestones", to: 'person_milestone_maps#my_milestones', as: 'mymilestones'
+  
 end

@@ -1,0 +1,27 @@
+<%= form_with(model: meetinglog) do |form| %>
+  <% if meetinglog.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(meetinglog.errors.count, "error") %> prohibited this meetinglog from being saved:</h2>
+
+      <ul>
+        <% meetinglog.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.number_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :meeting_id %>
+    <%= form.number_field :meeting_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
