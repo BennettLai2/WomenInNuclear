@@ -60,12 +60,12 @@
     color: #fff;
 }
 .reset {
-    background-color: #C0C0C0;
+    background-color: white;
 }
 .reset:hover{
-    color: #0000FF;
+    color: #3399ff;
     text-decoration: none; 
-    background-color: #C0C0C0;
+    background-color: white;
 }
 .reset:active {
     color: #FF0000
@@ -82,6 +82,8 @@
 .dropdown {
   position: relative;
   display: inline-block;
+  margin-bottom: 10px;
+  margin-left: 10px;
 }
 
 .dropdown-content {
@@ -132,18 +134,19 @@
 </script>
 <% if user_signed_in? %>
 <div class="dropdown">
+<img src="/assets/WIN_logo.jpeg" width="100"> 
           <button class="dropbtn"><i class="glyphicon glyphicon-user"></i></button>
           <div class="dropdown-content">
             <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'n' %></li>
             <li><%= link_to 'Edit Profile', edit_user_registration_path, class: 'n' %></li>
           </div>
         </div>
+        
 </head>
-<body style="background-color:#C0C0C0">
-<div class="jumbotron text-center">
-    <h1 style="color:#3399ff">Welcome to Women In Nuclear</h1>
+<body style="background-color">
+<div class="jumbotron text-center" style="color:white; background-color: #3399ff">
+    <h1 style="color:white">Welcome to Women In Nuclear</h1>
     <h2> Hello,  <%= current_user.first_name %> <%= current_user.last_name %> </h2></div>
-    
 <tbody>
     <header>
         <nav class="navbar navbar-expand-md">
