@@ -60,15 +60,14 @@ class UsersController < ApplicationController
     end
   end
 
-  def make_admin
+  def toggle_admin
     @user = User.find(params[:id])
-    @user.update(admin: true)
+    @user.update(admin: !@user.admin)
     respond_to do |format|
-      format.html { redirect_to root_path, notice: "Made user admin" }
+      format.html { redirect_to root_path, notice: (@user.admin)? "Made user admin": "Demoted admin" }
       format.json { head :no_content }
     end
   end
-
 
   private
 

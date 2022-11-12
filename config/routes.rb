@@ -1,50 +1,31 @@
 Rails.application.routes.draw do
+  root 'sessions#new'
+
   resources :meetinglogs
   resources :person_milestone_maps
   resources :milestones
-  get 'users/index'
+  resources :events  
+  resources :help
+
+  resources :sessions do
+    post "meeting"
+    get "resetpoints"
+    post "resetpointsconfirm"
+  end
+  
   devise_for :users do
     post "meeting"
   end
   devise_scope :user do 
     match '/sessions/user', to: 'devise/sessions#create', via: :post
   end  
+  resources :users
+
+
   match 'users/:id' => 'users#destroy', :via => :delete, :as => :admin_destroy_user
-  match 'users/:id' => 'users#make_admin', :via => :put, :as => :make_admin
-
-  resources :events
-  resources :accounts do
-    post "meeting"
-  end
-
-  root 'sessions#login'
-  resources :users
-  resources :sessions do
-    post "meeting"
-	  post "meetingvalidation"
-  end
-
-  resources :sessions do
-    post "meeting"
-	post "meetingvalidation"
-    get "resetpoints"
-    post "resetpointsconfirm"
-  end
-
-  resources :help
-
-
-  devise_scope :user do 
-    match '/sessions/user', to: 'devise/sessions#create', via: :post
-  end
-
-  resources :users
-
-
-  get '/admin', to: 'accounts#admin'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  match 'users/:id' => 'users#toggle_admin', :via => :put, :as => :toggle_admin
   get "/signup/:id", to: 'events#signup', as: 'signup'
   get '/leaderboard', to: 'sessions#leaderboard'
   get "/:id/mymilestones", to: 'person_milestone_maps#my_milestones', as: 'mymilestones'
-  
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
