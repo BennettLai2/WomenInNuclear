@@ -42,11 +42,14 @@ class MilestonesController < ApplicationController
   def update
     respond_to do |format|
       if @milestone.update(milestone_params)
-        Account.where("points >= ?", milestone_params['points']).find_each do |account|
+        User.where("points >= ?", milestone_params['points']).find_each do |account|
           PersonMilestoneMap.where(person_id: account.id, milestone_id: @milestone.id).first_or_create
         end
-        format.html { redirect_to milestone_url(@milestone)}
+        User.where("points < ?", milestone_params['points']).find_each do |account|
+          PersonMilestoneMap.where(person_id: account.id, milestone_id: @milestone.id).destroy_all
+        end
         flash[:alert] = "Milestone was successfully updated."
+        format.html { redirect_to milestone_url(@milestone)}
         format.json { render :show, status: :ok, location: @milestone }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -57,6 +60,7 @@ class MilestonesController < ApplicationController
 
   # DELETE /milestones/1 or /milestones/1.json
   def destroy
+    PersonMilestoneMap.where(milestone_id: @milestone.id).destroy_all
     @milestone.destroy
 
     respond_to do |format|
