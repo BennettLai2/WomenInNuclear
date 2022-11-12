@@ -58,8 +58,8 @@ RSpec.describe 'Creating and Logging in as Admin', type: :feature do
     createAdmin
     click_on 'Sign Out'
     click_on 'Sign In'
-    fill_in 'Email', with: 'admin@gmail.com'
-    fill_in 'Password', with: 'abcdef'
+    fill_in 'Email', with: 'admin123@gmail.com'
+    fill_in 'Password', with: '123456'
     click_on 'Log in'
     expect(page).to have_content('Admin')
   end
@@ -128,8 +128,8 @@ RSpec.describe 'Admin makes another user admin', type: :feature do
     click_link("Make Admin", :match => :first)
     click_on 'Sign Out'
     click_on 'Sign In'
-    fill_in 'Email', with: 'abc@gmail.com'
-    fill_in 'Password', with: 'abcdef'
+    fill_in 'Email', with: 'admin123@gmail.com'
+    fill_in 'Password', with: '123456'
     click_on 'Log in'
     expect(page).to have_content('admin')
     end
@@ -139,7 +139,7 @@ RSpec.describe 'Admin point reset', type: :feature do
     scenario 'valid inputs' do
     createAdmin
     click_on 'Reset Points'
-    fill_in 'Enter Email', with: 'admin@gmail.com'
+    fill_in 'Enter Email', with: 'admin123@gmail.com'
     click_on 'Reset Points'
     expect(page).not_to have_content('Operation Failed: Email is incorrect, points have not been changed')
     end
