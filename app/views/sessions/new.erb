@@ -1,91 +1,117 @@
-<div>
-    <h1> Welcome to Women In Nuclear </h1>
-</div> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href=
+"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">     
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>     
+    <script src=
+"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">
+    </script>     
+    <script src=
+"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
+    </script>
+</head>
 
-<% if user_signed_in? %>
-    <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
-    <%= link_to 'Edit Profile', edit_user_registration_path %>
-    
-    <% if current_user.admin %>
-    <h1> Hello, admin:  <%= current_user.first_name %> <%= current_user.last_name %> </h1>
-    <% else %>
-    <h1> Hello, regular club member:  <%= current_user.first_name %> <%= current_user.last_name %> </h1>
-    <% end%>
-
-    <% if current_user.admin %>
-    <%= form_tag root_path, :method => 'get' do %>
-        <p>
-          <%= label_tag(:search_by_first_name, "Search By First Name: ") %>
-          <%= text_field_tag :search_by_first_name, params[:search_by_first_name] %>
-      
-          <%= label_tag(:search_by_last_name, "Search By Last Name: ") %>
-          <%= text_field_tag :search_by_last_name, params[:search_by_last_name] %>
-          <%= submit_tag "Search", :name => nil %>
-        </p>
-      <% end %>
-    <table>
-    <thead>
-        <tr>
-        <th>First name</th>
-        <th>Last name</th>
-        <th>Email</th>
-        <th>Points</th>
-        <th>Admin</th>
-        <th colspan="3"></th>
-        </tr>
-    </thead>
-
-    <tbody>
-        <% @users.each do |user| %>
-        <tr>
-            <td><%= user.first_name %></td>
-            <td><%= user.last_name %></td>
-            <td><%= user.email %></td>
-            <td><%= user.points %></td>
-            <td><%= user.admin %></td>
-            <% if user.admin %>
-                <td><%= link_to 'Demote Admin', toggle_admin_path(user), method: :put, data: { confirm: 'Are you sure?' } %></td>
-            <% else %>
-                <td><%= link_to 'Make Admin', toggle_admin_path(user), method: :put, data: { confirm: 'Are you sure?' } %></td>
-            <% end %>
-            <td><%= link_to 'Destroy', admin_destroy_user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-        <% end %>
-    </tbody>
-    </table>
-
-    <br>
-    <%= link_to 'Reset Points', session_resetpoints_path(current_user.id) %>
-    <br>
-    <% end %>
-
-    <h2> Points: <%= current_user.points %></h2>
-
-    <br>
-    <%= link_to 'View Events', events_path %>
-
-    <br>
-    <%= form_with url: session_meeting_path(current_user.id), local: true, method: :post do %>
-
-    <div>
-        <strong><%= label_tag "event_id", "Event ID" %></strong>
-        <%= text_field_tag "event_id", nil %>
+<body style="background-color">
+    <div class = "container"> 
+        <img src="/assets/WIN_logo.jpeg" width="100">
     </div>
 
-    <%= submit_tag "Attend Meeting" %>
-    <br> 
-    <% if current_user.admin %>
-        <%= link_to 'View Milestones', milestones_path(current_user) %>
-    <% end %>
-    <br>
-    <%= link_to 'Leaderboard', leaderboard_path %>
-    <br>
-    <%= link_to 'My Milestones', mymilestones_path(current_user) %>
-<br>
-<% end %>
+    <div class="jumbotron text-center" style="color:white; background-color: #3399ff">
+        <h1> Welcome to Women In Nuclear </h1>
+    </div> 
 
-<% else %>
-    <%= link_to 'Sign Up', new_user_registration_path %>
-    <%= link_to 'Sign In', new_user_session_path %>
-<% end %>
+    <div class="container">
+        <% if user_signed_in? %>
+            <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
+            <%= link_to 'Edit Profile', edit_user_registration_path %>
+            <br><br>
 
+            <% if current_user.admin %>
+            <h1> Hello, admin:  <%= current_user.first_name %> <%= current_user.last_name %> </h1>
+            <% else %>
+            <h1> Hello, regular club member:  <%= current_user.first_name %> <%= current_user.last_name %> </h1>
+            <% end%>
+
+            <% if current_user.admin %>
+            <%= form_tag root_path, :method => 'get' do %>
+                <p>
+                <%= label_tag(:search_by_first_name, "Search By First Name: ") %>
+                <%= text_field_tag :search_by_first_name, params[:search_by_first_name] %>
+            
+                <%= label_tag(:search_by_last_name, "Search By Last Name: ") %>
+                <%= text_field_tag :search_by_last_name, params[:search_by_last_name] %>
+                <%= submit_tag "Search", :name => nil %>
+                </p>
+            <% end %>
+            <table>
+            <thead>
+                <tr>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Email</th>
+                <th>Points</th>
+                <th>Admin</th>
+                <th colspan="3"></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <% @users&.each do |user| %>
+                <tr>
+                    <td><%= user.first_name %></td>
+                    <td><%= user.last_name %></td>
+                    <td><%= user.email %></td>
+                    <td><%= user.points %></td>
+                    <td><%= user.admin %></td>
+                    <% if user.admin %>
+                        <td><%= link_to 'Demote Admin', toggle_admin_path(user), method: :put, data: { confirm: 'Are you sure?' } %></td>
+                    <% else %>
+                        <td><%= link_to 'Make Admin', toggle_admin_path(user), method: :put, data: { confirm: 'Are you sure?' } %></td>
+                    <% end %>
+                    <td><%= link_to 'Destroy', admin_destroy_user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                </tr>
+                <% end %>
+            </tbody>
+            </table>
+
+            <br>
+            <%= link_to 'Reset Points', session_resetpoints_path(current_user.id) %>
+            <br>
+            <% end %>
+
+            <h2> Points: <%= current_user.points %></h2>
+            <br>
+
+            <div>
+                <h3> Attend Meeting </h3>
+                <%= form_with url: session_meeting_path(current_user.id), local: true, method: :post do %>
+                <strong><%= label_tag "event_id", "Event ID" %></strong>
+                <%= text_field_tag "event_id", nil %>
+                <br>
+                <%= submit_tag "Attend Meeting" %>
+                <br> 
+            </div>
+
+
+            <br>
+            <%= link_to 'View Events', events_path %>
+            <% if current_user.admin %>
+                <%= link_to 'View Milestones', milestones_path(current_user) %>
+            <% end %>
+            <br>
+            <%= link_to 'My Milestones', mymilestones_path(current_user) %> <br>
+            <%= link_to 'Leaderboard', leaderboard_path %> <br>
+        <br>
+        <% end %>
+
+        <% else %>
+            <%= link_to 'Sign Up', new_user_registration_path %>
+            <%= link_to 'Sign In', new_user_session_path %>
+        <% end %>
+    </div>
+</body>

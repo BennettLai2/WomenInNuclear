@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2022_10_12_185820) do
     t.string "first_name"
     t.string "last_name"
     t.integer "points", default: 0
-    t.boolean "admin"
+    t.boolean "admin", default: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
