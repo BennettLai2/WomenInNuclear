@@ -25,9 +25,11 @@ class SessionsController < ApplicationController
       if @email_confirmation == @real_admin_email
         User.update_all(points: 0)
         PersonMilestoneMap.delete_all
-        redirect_to root_path notice: "Operation Succeeded: Points have been reset to 0"
+        redirect_to root_path
+        flash[:alert] = "Operation Succeeded: Points have been reset to 0"
       else
-        redirect_to root_path, notice: "Operation Failed: Email is incorrect, points have not been changed"
+        redirect_to root_path
+        flash[:alert] = "Operation Failed: Email is incorrect, points have not been changed"
       end
     end
 
