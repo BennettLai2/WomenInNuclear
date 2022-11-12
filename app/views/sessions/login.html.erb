@@ -8,9 +8,10 @@
     
     <% if current_user.admin %>
     <h1> Hello, admin:  <%= current_user.first_name %> <%= current_user.last_name %> </h1>
+	
     <% else %>
     <h1> Hello, regular club member:  <%= current_user.first_name %> <%= current_user.last_name %> </h1>
-    <% end%>
+    <% end %>
 
     <% if current_user.admin %>
     <%= form_tag root_path, :method => 'get' do %>
@@ -61,7 +62,7 @@
     <%= link_to 'View Events', events_path %>
 
     <br>
-    <%= form_with url: session_meeting_path(current_user.id), local: true, method: :post do %>
+    <%= form_with url: session_meetingvalidation_path(current_user.id), local: true, method: :post do %>
 
     <div>
         <strong><%= label_tag "event_id", "Event ID" %></strong>
@@ -70,7 +71,12 @@
 
     <%= submit_tag "Attend Meeting" %>
     <br> 
+	
+	
+	
     <% if current_user.admin %>
+	    <%= link_to 'View Meeting Log', meetinglogs_path %> 
+		<br>
         <%= link_to 'View Milestones', milestones_path(current_user) %>
     <% end %>
     <br>
@@ -78,6 +84,7 @@
     <br>
     <%= link_to 'My Milestones', mymilestones_path(current_user) %>
 <br>
+<%= link_to 'Help Page', help_index_path%>
 <% end %>
 
 <% else %>
