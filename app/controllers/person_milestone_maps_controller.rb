@@ -20,7 +20,7 @@ class PersonMilestoneMapsController < ApplicationController
   end
 
   def my_milestones
-    @milestones = Milestone.joins("INNER JOIN Person_Milestone_Maps on person_milestone_maps.milestone_id = milestones.id")
+    @milestones = Milestone.joins("INNER JOIN Person_Milestone_Maps ON person_milestone_maps.milestone_id = milestones.id WHERE person_milestone_maps.person_id = #{current_user.id}")
   end
 
   # POST /person_milestone_maps or /person_milestone_maps.json
@@ -29,7 +29,8 @@ class PersonMilestoneMapsController < ApplicationController
 
     respond_to do |format|
       if @person_milestone_map.save
-        format.html { redirect_to person_milestone_map_url(@person_milestone_map), notice: "Person milestone map was successfully created." }
+        format.html { redirect_to person_milestone_map_url(@person_milestone_map)}
+        flash[:alert] = "Person milestone map was successfully created."
         format.json { render :show, status: :created, location: @person_milestone_map }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -42,7 +43,8 @@ class PersonMilestoneMapsController < ApplicationController
   def update
     respond_to do |format|
       if @person_milestone_map.update(person_milestone_map_params)
-        format.html { redirect_to person_milestone_map_url(@person_milestone_map), notice: "Person milestone map was successfully updated." }
+        format.html { redirect_to person_milestone_map_url(@person_milestone_map)}
+        flash[:alert] = "Person milestone map was successfully updated."
         format.json { render :show, status: :ok, location: @person_milestone_map }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -56,7 +58,8 @@ class PersonMilestoneMapsController < ApplicationController
     @person_milestone_map.destroy
 
     respond_to do |format|
-      format.html { redirect_to person_milestone_maps_url, notice: "Person milestone map was successfully destroyed." }
+      format.html { redirect_to person_milestone_maps_url}
+      flash[:alert] = "Person milestone map was successfully destroyed."
       format.json { head :no_content }
     end
   end

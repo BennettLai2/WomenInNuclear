@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
   root 'sessions#new'
 
+  resources :meetinglogs
   resources :person_milestone_maps
   resources :milestones
-  resources :events
+  resources :events  
+  resources :help
+
   resources :sessions do
     post "meeting"
     get "resetpoints"

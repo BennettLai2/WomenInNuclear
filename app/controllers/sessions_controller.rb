@@ -13,11 +13,20 @@ class SessionsController < ApplicationController
 
     def meeting
         @user = User.find(params[:session_id])
-        # Got this to work, but there is a bug:
-        # A user can continuously click on attend meeting with the same code and keep updating their points -> Implement future
-        # ticket to fix this?
-        @event = Event.where(meeting_id: params[:event_id]).where("start_time <= :current_time AND end_time >= :current_time", {current_time: Time.now}).take
+        @event = Event.with_valid_time(params[:event_id]);
     end
+	
+	def meetingvalidation
+		@user = current_user
+		@event = Event.where(meeting_id: params[:event_id]).where("start_time <= :current_time AND end_time >= :current_time", {current_time: Time.now}).take
+		@entry = Meetinglog.where(user_id: @user.id, meeting_id: params[:event_id]).exists?
+		if(!@entry & @event)
+			@meetinglog = Meetinglog.where(user_id: @user.id, meeting_id: params[:event_id]).first_or_create
+			current_user.points = current_user.points + @event.points
+			current_user.save
+		end
+	
+	end
 
     def resetpoints
     end
@@ -27,13 +36,17 @@ class SessionsController < ApplicationController
       @real_admin_email = User.find(params[:session_id]).email
       if @email_confirmation == @real_admin_email
         User.update_all(points: 0)
-        redirect_to root_path notice: "Operation Succeeded: Points have been reset to 0"
+        PersonMilestoneMap.delete_all
+        redirect_to root_path
+        flash[:alert] = "Operation Succeeded: Points have been reset to 0"
       else
-        redirect_to root_path, notice: "Operation Failed: Email is incorrect, points have not been changed"
+        redirect_to root_path
+        flash[:alert] = "Operation Failed: Email is incorrect, points have not been changed"
       end
     end
 
     def leaderboard
         @users = User.all.order('points DESC')
       end
+
 end

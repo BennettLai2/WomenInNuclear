@@ -15,35 +15,27 @@
 "https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
     </script>
 </head>
-<body style="background-color:#C0C0C0">
-
+<body style="background-color:#3399ff">
 <div class="jumbotron text-center" style="color:#3399ff">
-  <h2>Leaderboard</h2>
+  <h2>Meeting Validation</h2>
 </div>
-<div>
-<table class="table table-striped">
-<tbody>
 
-    <thead>
-        <th> </th>
-        <th scope="col" style="color:#3399ff"> First Name </th>
-        <th scope="col" style="color:#3399ff"> Last Name </th>
-        <th scope="col" style="color:#3399ff"> Email </th>
-        <th scope="col" style="color:#3399ff"> Points </th>
-
-    </thead>    
-    <% @users.each_with_index do |user, index| %>
-        <tr>
-        <td style="color:#3399ff"><%= index + 1 %></td>
-        <td><%= user.first_name %></td> 
-        <td><%= user.last_name %> </td>
-        <td><%= user.email %> </td>
-        <td><%= user.points %></td>
-        </tr>
-    <% end %>
-</tbody>
-</table>
-</div>
+<div class="text-center">
+<% if @event&.meeting_name%>
+  <h4 class="text-light">Current Points: <%= current_user.points%></h4>
+  <h4 class="text-light">Meeting Name: <%= @event.meeting_name %></h4>
+  <h4 class="text-light">Meeting Description: <%= @event.description %></p>
+  <h4 class="text-light">Meeting Point Value: <%= @event.points %></h4>
+  
+  <% if @entry %>
+    <h4>Error! Meeting already attended!</h4>
+  <% else %>
+    <h3>Success! Meeting has been attended</h3>
+	
+  <% end %>
+<% else %>
+  <h3>Error! Meeting ID does not exist or Time has run out!</h3>
+<% end %>
 </div>
 <div class="text-center">
 <%= button_to 'Back', root_path, :class => "btn btn-light", :method => :get  %>

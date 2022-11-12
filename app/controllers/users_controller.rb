@@ -15,6 +15,7 @@ class UsersController < ApplicationController
   # POST /accounts or /accounts.json
   def create
     @user = User.new(account_params)
+    PersonMilestoneMap.where(person_id: @user.id).destory_all
     begin
       if @user.save
         session[:user_id] = @user.email
@@ -34,6 +35,10 @@ class UsersController < ApplicationController
         Milestone.where("points <= ?", account_params['points']).find_each do |milestone|
           PersonMilestoneMap.where(person_id: @user.id, milestone_id: milestone.id).first_or_create
         end
+        Milestone.where("points > ?", account_params['points']).find_each do |milestone|
+          PersonMilestoneMap.find_by(person_id: @user.id, milestone_id: milestone.id).try(:destroy)
+        end
+
         format.html { redirect_to root_path, notice: "Account was successfully updated." }
         format.json { render :show, status: :ok, location: @user }
       else
@@ -46,6 +51,7 @@ class UsersController < ApplicationController
   # DELETE /accounts/1 or /accounts/1.json
   def destroy
     @user = User.find(params[:id])
+    PersonMilestoneMap.where(person_id: @user.id).destory_all
     @user.destroy
 
     respond_to do |format|
