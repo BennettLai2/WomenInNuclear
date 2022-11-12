@@ -88,7 +88,6 @@
             <br>
 
             <div>
-                <h3> Attend Meeting </h3>
                 <%= form_with url: session_meeting_path(current_user.id), local: true, method: :post do %>
                 <strong><%= label_tag "event_id", "Event ID" %></strong>
                 <%= text_field_tag "event_id", nil %>
@@ -106,6 +105,7 @@
             <br>
             <%= link_to 'My Milestones', mymilestones_path(current_user) %> <br>
             <%= link_to 'Leaderboard', leaderboard_path %> <br>
+            <%= link_to 'Help Page', help_index_path%>
         <br>
         <% end %>
 
