@@ -48,4 +48,5 @@ class SessionsController < ApplicationController
     def leaderboard
         @users = User.all.order('points DESC')
       end
+
 end

@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   resources :users
   resources :sessions do
     post "meeting"
-	post "meetingvalidation"
+	  post "meetingvalidation"
   end
 
   resources :sessions do
@@ -30,6 +30,9 @@ Rails.application.routes.draw do
     get "resetpoints"
     post "resetpointsconfirm"
   end
+
+  resources :help
+
 
   devise_scope :user do 
     match '/sessions/user', to: 'devise/sessions#create', via: :post
