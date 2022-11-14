@@ -16,6 +16,9 @@
     </script>
 </head>
 <body>
+<div class = "container"> 
+  <img src="/assets/WIN_logo.jpeg" width="100">
+</div>
 <div class="jumbotron text-center" style="color:white; background-color: #3399ff">
   <h2>Meeting Validation</h2>
 </div>
@@ -37,6 +40,6 @@
 <% end %>
 </div>
 <div class="text-center">
-<%= button_to 'Back', root_path, :class => "btn btn-light", :method => :get  %>
+  <%= link_to 'Back', root_path, {class: "btn btn-light"}%>
 </div>
 </body>

@@ -54,9 +54,9 @@
   <%= @event.description %>
 </h4>
 <% if current_user.admin %>
-  <%= link_to 'Edit', edit_event_path(@event) %>  |
+  <%= link_to 'Edit', edit_event_path(@event), {class: "btn btn-light"} %>  |
 <% end %>
-<%= link_to 'Back', events_path %>
+<%= link_to 'Back', events_path, {class: "btn btn-light"} %>
 
 </div>
 

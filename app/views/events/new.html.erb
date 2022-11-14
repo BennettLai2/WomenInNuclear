@@ -15,12 +15,23 @@
 "https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
     </script>
 </head>
-<div class="jumbotron text-center" style="color:white; background-color: #3399ff">
-    <h2> New Event </h2>
-</div> 
-<div class = "text-center">
-<%= render 'form', event: @event %>
 
-<%= button_to 'Back', root_path, :class => "btn btn-light", :method => :get  %>
-</div>
+<body>
+    <div class = "container"> 
+        <img src="/assets/WIN_logo.jpeg" width="100">
+    </div>
+
+    <div class="jumbotron text-center" style="color:white; background-color: #3399ff">
+        <h2> New Event </h2>
+    </div> 
+
+    <div class="container">
+        <%= render 'form', event: @event %>
+    </div>
+
+    <br>
+    <div class="text-center">
+    <%= link_to 'Back', root_path, {class: "btn btn-light"} %>
+    </div>
+</body>
 

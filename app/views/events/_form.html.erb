@@ -1,3 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href=
+"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">     
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>     
+    <script src=
+"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">
+    </script>     
+    <script src=
+"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
+    </script>
+</head>
+
+<body>
 <%= form_with(model: event) do |form| %>
   <% if event.errors.any? %>
     <div id="error_explanation">
@@ -11,38 +30,39 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :meeting_id, 'Meeting Verification Code     (Will be auto generated)' %>
-    <%= form.number_field :meeting_id, :value => @event.meeting_id, :readonly => true %>
-  </div>
+  <div class="card bg-light">
+    <div class="card-body">
 
-  <div class="field">
-    <%= form.label :points %>
-    <%= form.number_field :points %>
-  </div>
+      <div class="field mb-3">
+        <%= form.label :points, { class: "form-label"} %>
+        <%= form.number_field :points, { class: "form-control",  autocomplete: "off"} %>
+      </div>
+
+      <div class="field mb-3">
+        <%= form.label :meeting_name, { class: "form-label"} %>
+        <%= form.text_field :meeting_name, { class: "form-control",  autocomplete: "off"} %>
+      </div>
+    
+      <div class="field mb-3">
+        <%= form.label :start_time, { class: "form-label"} %>
+        <%= form.datetime_select :start_time, { class: "form-control",  autocomplete: "off"}  %>
+      </div>
   
-  <div class="field">
-    <%= form.label :meeting_name %>
-    <%= form.text_field :meeting_name %>
-  </div>
- 
- 
-  <div class="field">
-    <%= form.label :start_time %>
-    <%= form.datetime_select :start_time  %>
-  </div>
+      <div class="field mb-3">
+        <%= form.label :end_time, { class: "form-label"} %>
+        <%= form.datetime_select :end_time, :default => (Time.now + 1.hours)%>
+      </div> 
+
+      <div class="field mb-3" >
+        <%= form.label :description, { class: "form-label"} %>
+        <%= form.text_field :description, { class: "form-control",  autocomplete: "off"} %>
+      </div>
+
+      <div class="actions">
+        <%= form.submit "Submit", class: "btn btn-primary" %>
+      </div>
   
-  <div class="field">
-    <%= form.label :end_time %>
-    <%= form.datetime_select :end_time, :default => Time.now + 1.hours %>
-  </div> 
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+    </div>
   </div>
 <% end %>
+</body>
