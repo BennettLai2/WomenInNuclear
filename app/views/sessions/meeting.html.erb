@@ -26,7 +26,6 @@
   <h4>Meeting Name: <%= @event.meeting_name %></h4>
   <h4>Meeting Description: <%= @event.description %></p>
   <h4>Meeting Point Value: <%= @event.points %></h4>
-  
   <% if @entry %>
     <h4>Error! Meeting already attended!</h4>
   <% else %>
@@ -38,6 +37,6 @@
 <% end %>
 </div>
 <div class="text-center">
-<%= button_to 'Back', root_path, :class => "btn btn-secondary", :method => :get  %>
+<%= button_to 'Back', root_path, :class => "btn btn-light", :method => :get  %>
 </div>
 </body>

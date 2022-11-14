@@ -15,9 +15,9 @@
 "https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
     </script>
 </head>
-<body style="background-color">
+<body>
 
-<div class="jumbotron text-center" style="color:white; background-color: #3399ff">
+<div class="jumbotron text-center" style="color:#3399ff">
   <h2>Leaderboard</h2>
 </div>
 <div>
@@ -26,10 +26,10 @@
 
     <thead>
         <th> </th>
-        <th scope="col"> First Name </th>
-        <th scope="col"> Last Name </th>
-        <th scope="col"> Email </th>
-        <th scope="col"> Points </th>
+        <th scope="col" style="color:#3399ff"> First Name </th>
+        <th scope="col" style="color:#3399ff"> Last Name </th>
+        <th scope="col" style="color:#3399ff"> Email </th>
+        <th scope="col" style="color:#3399ff"> Points </th>
 
     </thead>    
     <% @users.each_with_index do |user, index| %>
@@ -46,6 +46,6 @@
 </div>
 </div>
 <div class="text-center">
-<%= button_to 'Back', root_path, :class => "btn btn-secondary", :method => :get  %>
+<%= button_to 'Back', root_path, :class => "btn btn-light", :method => :get  %>
 </div>
 </body>
