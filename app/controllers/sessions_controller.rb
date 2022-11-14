@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-    def login
+    def new
         @users = User.all
 
         if params[:search_by_first_name] && params[:search_by_first_name] != ""
@@ -20,6 +20,12 @@ class SessionsController < ApplicationController
         if(!@entry & @event)
           @meetinglog = Meetinglog.where(user_id: @user.id, meeting_id: params[:event_id]).first_or_create
           current_user.points = current_user.points + @event.points
+          Milestone.where("points <= ?", current_user.points).find_each do |milestone|
+            PersonMilestoneMap.where(person_id: @user.id, milestone_id: milestone.id).first_or_create
+          end
+          Milestone.where("points > ?", current_user.points).find_each do |milestone|
+            PersonMilestoneMap.find_by(person_id: @user.id, milestone_id: milestone.id).try(:destroy)
+          end
           current_user.save
         end
     end
