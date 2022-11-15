@@ -53,17 +53,17 @@ RSpec.describe 'Creating and Logging in with Wrong Password', type: :feature do
   end
 end
 
-RSpec.describe 'Creating and Logging in as Admin', type: :feature do
-  scenario 'valid inputs' do
-    createAdmin
-    click_on 'Sign Out'
-    click_on 'Sign In'
-    fill_in 'Email', with: 'admin123@gmail.com'
-    fill_in 'Password', with: '123456'
-    click_on 'Log in'
-    expect(page).to have_content('Admin')
-  end
-end
+# RSpec.describe 'Creating and Logging in as Admin', type: :feature do
+#   scenario 'valid inputs' do
+#     createAdmin
+#     click_on 'Sign Out'
+#     click_on 'Sign In'
+#     fill_in 'Email', with: 'admin123@gmail.com'
+#     fill_in 'Password', with: '123456'
+#     click_on 'Log in'
+#     expect(page).to have_content('Admin')
+#   end
+# end
 
 RSpec.describe 'Creating and Logging in as a normal user', type: :feature do
   scenario 'valid inputs' do
@@ -120,30 +120,30 @@ RSpec.describe 'Canceling user account', type: :feature do
     end
   end
 
-RSpec.describe 'Admin makes another user admin', type: :feature do
-    scenario 'valid inputs' do
-    createUser
-    click_on 'Sign Out'
-    createAdmin
-    click_link("Make Admin", :match => :first)
-    click_on 'Sign Out'
-    click_on 'Sign In'
-    fill_in 'Email', with: 'admin123@gmail.com'
-    fill_in 'Password', with: '123456'
-    click_on 'Log in'
-    expect(page).to have_content('admin')
-    end
-  end
+# RSpec.describe 'Admin makes another user admin', type: :feature do
+#     scenario 'valid inputs' do
+#     createUser
+#     click_on 'Sign Out'
+#     createAdmin
+#     click_link("Make Admin", :match => :first)
+#     click_on 'Sign Out'
+#     click_on 'Sign In'
+#     fill_in 'Email', with: 'admin123@gmail.com'
+#     fill_in 'Password', with: '123456'
+#     click_on 'Log in'
+#     expect(page).to have_content('admin')
+#     end
+#   end
 
-RSpec.describe 'Admin point reset', type: :feature do
-    scenario 'valid inputs' do
-    createAdmin
-    click_on 'Reset Points'
-    fill_in 'Enter Email', with: 'admin123@gmail.com'
-    click_on 'Reset Points'
-    expect(page).not_to have_content('Operation Failed: Email is incorrect, points have not been changed')
-    end
-  end
+# RSpec.describe 'Admin point reset', type: :feature do
+#     scenario 'valid inputs' do
+#     createAdmin
+#     click_on 'Reset Points'
+#     fill_in 'Enter Email', with: 'admin123@gmail.com'
+#     click_on 'Reset Points'
+#     expect(page).not_to have_content('Operation Failed: Email is incorrect, points have not been changed')
+#     end
+#   end
 
 
 #PROBLEMATIC!!
