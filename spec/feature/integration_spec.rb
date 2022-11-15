@@ -23,6 +23,14 @@ def createAdmin
     click_on 'Sign up'
 end
 
+def signinAdmin
+  visit root_path
+    click_on 'Sign In'
+    fill_in 'Email', with: "admin123@gmail.com"
+    fill_in 'Password', with: '123456'
+    click_on 'Log in'
+end
+
 RSpec.describe 'Logging into a fake account', type: :feature do
   scenario 'valid inputs' do
     visit root_path
@@ -145,7 +153,79 @@ RSpec.describe 'Admin point reset', type: :feature do
     end
   end
 
+RSpec.describe 'Default Admin Login', type: :feature do
+  scenario 'valid inputs' do
+    visit root_path
+    click_on 'Sign In'
+    fill_in 'Email', with: "admin123@gmail.com"
+    fill_in 'Password', with: '123456'
+    click_on 'Log in'
+    expect(page).to have_content('Admin')
+  end
+end
 
+  RSpec.describe 'Admin create Milestone', type: :feature do
+    scenario 'valid inputs' do
+      signinAdmin
+      click_on 'View Milestones'
+      click_on 'New Milestone'
+      fill_in 'Name', with: 'milestone1'
+      fill_in 'Points', with: 3
+      fill_in 'Message', with: 'Hello message'
+      click_on 'Submit'
+      expect(page).to have_content('Milestone was successfully created.')
+    end
+  end
+  
+  RSpec.describe 'Admin view Milestone', type: :feature do
+    scenario 'valid inputs' do
+      signinAdmin
+      click_on 'View Milestones'
+      click_on 'New Milestone'
+      fill_in 'Name', with: 'milestone1'
+      fill_in 'Points', with: 3
+      fill_in 'Message', with: 'Hello message'
+      click_on 'Submit'
+      click_on 'Back'
+      click_on 'Show'
+      expect(page).to have_content('milestone1')
+      expect(page).to have_content('3')
+      expect(page).to have_content('Hello message')
+    end
+  end
+  
+  RSpec.describe 'Admin edit Milestone', type: :feature do
+    scenario 'valid inputs' do
+      signinAdmin
+      click_on 'View Milestones'
+      click_on 'New Milestone'
+      fill_in 'Name', with: 'milestone1'
+      fill_in 'Points', with: 3
+      fill_in 'Message', with: 'Hello message'
+      click_on 'Submit'
+      click_on 'Back'
+      click_on 'Edit'
+      fill_in 'Name', with: 'milestoneNew'
+      click_on 'Submit'
+      expect(page).to have_content('Milestone was successfully updated.')
+    end
+  end
+  
+  RSpec.describe 'Admin delete Milestone', type: :feature do
+    scenario 'valid inputs' do
+      signinAdmin
+      click_on 'View Milestones'
+      click_on 'New Milestone'
+      fill_in 'Name', with: 'milestone1'
+      fill_in 'Points', with: 3
+      fill_in 'Message', with: 'Hello message'
+      click_on 'Submit'
+      click_on 'Back'
+      click_on 'Destroy'
+      expect(page).to have_content('Milestone was successfully destroyed.')
+      expect(page).not_to have_content('MilestoneNew')
+    end
+  end
 #PROBLEMATIC!!
 =begin
 RSpec.describe 'User attends an event and earns points', type: :feature do
