@@ -51,7 +51,7 @@ class UsersController < ApplicationController
   # DELETE /accounts/1 or /accounts/1.json
   def destroy
     @user = User.find(params[:id])
-    PersonMilestoneMap.where(person_id: @user.id).destory_all
+    PersonMilestoneMap.where(person_id: @user.id).destroy_all
     @user.destroy
 
     respond_to do |format|

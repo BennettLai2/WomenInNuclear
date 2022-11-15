@@ -16,6 +16,9 @@
     </script>
 </head>
 <body>
+<div class = "container"> 
+  <img src="/assets/WIN_logo.jpeg" width="100">
+</div>
 <div class="jumbotron text-center" style="color:white; background-color: #3399ff">
   <h2>Meeting Validation</h2>
 </div>
@@ -26,7 +29,6 @@
   <h4>Meeting Name: <%= @event.meeting_name %></h4>
   <h4>Meeting Description: <%= @event.description %></p>
   <h4>Meeting Point Value: <%= @event.points %></h4>
-  
   <% if @entry %>
     <h4>Error! Meeting already attended!</h4>
   <% else %>
@@ -38,6 +40,6 @@
 <% end %>
 </div>
 <div class="text-center">
-<%= button_to 'Back', root_path, :class => "btn btn-secondary", :method => :get  %>
+  <%= link_to 'Back', root_path, {class: "btn btn-light"}%>
 </div>
 </body>

@@ -15,22 +15,22 @@
 "https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
     </script>
 </head>
-<body style="background-color">
-
+<body>
+<div class = "container"> 
+  <img src="/assets/WIN_logo.jpeg" width="100">
+</div>
 <div class="jumbotron text-center" style="color:white; background-color: #3399ff">
   <h2>Leaderboard</h2>
 </div>
-<div>
-<table class="table table-striped">
+<div class='container'>
+<table class="table table-striped align-middle mb-0 bg-white">
 <tbody>
-
     <thead>
         <th> </th>
-        <th scope="col"> First Name </th>
-        <th scope="col"> Last Name </th>
-        <th scope="col"> Email </th>
-        <th scope="col"> Points </th>
-
+        <th scope="col" style="color:#3399ff"> First Name </th>
+        <th scope="col" style="color:#3399ff"> Last Name </th>
+        <th scope="col" style="color:#3399ff"> Email </th>
+        <th scope="col" style="color:#3399ff"> Points </th>
     </thead>    
     <% @users.each_with_index do |user, index| %>
         <tr>
@@ -44,8 +44,8 @@
 </tbody>
 </table>
 </div>
-</div>
+<br>
 <div class="text-center">
-<%= button_to 'Back', root_path, :class => "btn btn-secondary", :method => :get  %>
+    <%= link_to 'Back', root_path, {class: "btn btn-light"}%>
 </div>
 </body>

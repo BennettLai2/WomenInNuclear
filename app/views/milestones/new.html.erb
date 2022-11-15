@@ -17,17 +17,21 @@
 </head>
 
 <body>
+    <div class = "container"> 
+        <img src="/assets/WIN_logo.jpeg" width="100">
+    </div>
 
-    <div class="jumbotron text-center bg-primary">
-    <h2>New Milestone</h2>
+    <div class="jumbotron text-center" style="color:white; background-color: #3399ff">
+        <h2>New Milestone</h2>
     </div>
 
     <div class="container">
-    <%= render 'form', milestone: @milestone %>
+        <%= render 'form', milestone: @milestone %>
     </div>
 
+    <br>
     <div class="text-center">
-    <%= link_to 'Back', milestones_path, {class: "btn btn-light mt-4"} %>
+    <%= link_to 'Back', milestones_path, {class: "btn btn-light"} %>
     </div>
 
 </body>

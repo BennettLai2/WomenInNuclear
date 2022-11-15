@@ -1,36 +1,62 @@
-<p id="notice"><%= notice %></p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href=
+"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">     
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>     
+    <script src=
+"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">
+    </script>     
+    <script src=
+"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
+    </script>
+</head>
+<div class="jumbotron text-center" style="color:white; background-color: #3399ff">
+    <h2> Event Details </h2>
+</div> 
+
+<div class = "text-center">
+
+<h4 id="notice"><%= notice %></h4>
 
 <% if current_user.admin %>
-<p>
+<h4>
   <strong>Meeting Verification Code:</strong>
   <%= @event.meeting_id %>
-</p>
+</h4>
 <% end %>
-<p>
+<h4>
   <strong>Points:</strong>
   <%= @event.points %>
-</p>
+</h4>
 
-<p>
+<h4>
   <strong>Meeting name:</strong>
   <%= @event.meeting_name %>
-</p>
+</h4>
 
-<p>
+<h4>
   <strong>Start time:</strong>
   <%= @event.start_time %>
-</p>
+</h4>
 
-<p>
+<h4>
   <strong>End time:</strong>
   <%= @event.end_time %>
-</p>
+</h4>
 
-<p>
+<h4>
   <strong>Description:</strong>
   <%= @event.description %>
-</p>
+</h4>
 <% if current_user.admin %>
-  <%= link_to 'Edit', edit_event_path(@event) %>  |
+  <%= link_to 'Edit', edit_event_path(@event), {class: "btn btn-light"} %>  |
 <% end %>
-<%= link_to 'Back', events_path %>
+<%= link_to 'Back', events_path, {class: "btn btn-light"} %>
+
+</div>
+
