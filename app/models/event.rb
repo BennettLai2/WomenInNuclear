@@ -8,7 +8,11 @@ class Event < ApplicationRecord
   validates_datetime :end_time, after: :start_time
 
   def self.with_valid_time(event_id)
-      where("meeting_id = ? AND start_time <= ? AND end_time >= ?", event_id, Time.now, Time.now).first rescue nil
+      
+        where("meeting_id = ? AND start_time <= ? AND end_time >= ?", event_id, Time.now, Time.now).first
+  rescue StandardError
+        nil
+      
   end
 
   private

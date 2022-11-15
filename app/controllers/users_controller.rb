@@ -64,7 +64,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.update(admin: !@user.admin)
     respond_to do |format|
-      format.html { redirect_to root_path, notice: (@user.admin)? "Made user admin": "Demoted admin" }
+      format.html { redirect_to root_path, notice: @user.admin ? "Made user admin" : "Demoted admin" }
       format.json { head :no_content }
     end
   end

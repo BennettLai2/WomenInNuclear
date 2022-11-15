@@ -3,9 +3,9 @@ require 'rails_helper'
 RSpec.describe "meetinglogs/show", type: :view do
   before(:each) do
     @meetinglog = assign(:meetinglog, Meetinglog.create!(
-      user_id: 2,
-      meeting_id: 3
-    ))
+                                        user_id: 2,
+                                        meeting_id: 3
+                                      ))
   end
 
   it "renders attributes in <p>" do
