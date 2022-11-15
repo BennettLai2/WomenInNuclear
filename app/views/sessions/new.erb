@@ -25,6 +25,7 @@
         <h1> Welcome to Women In Nuclear </h1>
     </div> 
 
+    <div class="container">
         <% if user_signed_in? %>
             <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
             <%= link_to 'Edit Profile', edit_user_registration_path %>
@@ -47,35 +48,29 @@
                 <%= submit_tag "Search", :name => nil %>
                 </p>
             <% end %>
-            <table>
-            <thead>
-                <tr>
-                <th>First name</th>
-                <th>Last name</th>
-                <th>Email</th>
-                <th>Points</th>
-                <th>Admin</th>
-                <th colspan="3"></th>
-                </tr>
-            </thead>
-
-            <tbody>
-                <% @users&.each do |user| %>
+            <table class="table table-striped" >
+                <thead>
+                    <tr >
+                        <th style="color:#3399ff">First name</th>
+                        <th style="color:#3399ff">Last name</th>
+                        <th style="color:#3399ff">Email</th>
+                        <th style="color:#3399ff">Points</th>
+                        <th style="color:#3399ff">Admin</th>
+                        <th colspan="3"></th>
+                    </tr>
+                </thead>
+            
+                <% @users.each do |user| %>
                 <tr>
                     <td><%= user.first_name %></td>
                     <td><%= user.last_name %></td>
                     <td><%= user.email %></td>
                     <td><%= user.points %></td>
                     <td><%= user.admin %></td>
-                    <% if user.admin %>
-                        <td><%= link_to 'Demote Admin', toggle_admin_path(user), method: :put, data: { confirm: 'Are you sure?' } %></td>
-                    <% else %>
-                        <td><%= link_to 'Make Admin', toggle_admin_path(user), method: :put, data: { confirm: 'Are you sure?' } %></td>
-                    <% end %>
-                    <td><%= link_to 'Destroy', admin_destroy_user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                    <td><%= link_to 'Make Admin', toggle_admin_path(user), method: :put, data: { confirm: 'Are you sure?' }, class: 'v' %></td>
+                    <td><%= link_to 'Destroy', admin_destroy_user_path(user), method: :delete, data: { confirm: 'Are you sure?' }, class: 'd' %></td>
                 </tr>
                 <% end %>
-            </tbody>
             </table>
 
             <br>
