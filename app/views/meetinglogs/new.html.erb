@@ -1,5 +1,9 @@
+<% if current_user.admin %>
 <h1>New Meetinglog</h1>
 
 <%= render 'form', meetinglog: @meetinglog %>
 
 <%= link_to 'Back', meetinglogs_path %>
+<% else %>
+<p> Access Denied. Need Admin Privileges</p>
+<% end %>

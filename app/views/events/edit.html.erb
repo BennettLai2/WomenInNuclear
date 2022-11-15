@@ -15,7 +15,7 @@
 "https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
     </script>
 </head>
-
+<% if current_user.admin %>
 <body>
     <div class = "container"> 
         <img src="/assets/WIN_logo.jpeg" width="100">
@@ -36,5 +36,7 @@
     </div>
 
 </body>
-
+<% else %>
+<p> Access Denied. Need Admin Privileges</p>
+<% end %>
 
