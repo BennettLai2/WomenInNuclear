@@ -22,8 +22,8 @@ Rails.application.routes.draw do
   resources :users
 
 
-  match 'users/:id' => 'users#destroy', :via => :delete, :as => :admin_destroy_user
-  match 'users/:id' => 'users#toggle_admin', :via => :put, :as => :toggle_admin
+  match 'destroy/:id' => 'users#destroy', :via => :delete, :as => :admin_destroy_user
+  match 'toggle_admin/:id' => 'users#toggle_admin', :via => :put, :as => :toggle_admin
   get "/signup/:id", to: 'events#signup', as: 'signup'
   get '/leaderboard', to: 'sessions#leaderboard'
   get "/:id/mymilestones", to: 'person_milestone_maps#my_milestones', as: 'mymilestones'
