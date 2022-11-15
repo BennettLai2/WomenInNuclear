@@ -75,8 +75,8 @@
 	
 	
     <% if current_user.admin %>
-	    <%= link_to 'View Meeting Log', meetinglogs_path %> 
-		<br>
+	    <%= link_to 'View Meeting Log', meetinglogs_path(current_user) %> 
+		<br></br>
         <%= link_to 'View Milestones', milestones_path(current_user) %>
     <% end %>
     <br>

@@ -1,6 +1,10 @@
+<% if current_user.admin %>
 <h1>Editing Person Milestone Map</h1>
 
 <%= render 'form', person_milestone_map: @person_milestone_map %>
 
 <%= link_to 'Show', @person_milestone_map %> |
 <%= link_to 'Back', person_milestone_maps_path %>
+<% else %>
+<p> Access Denied. Need Admin Privileges</p>
+<% end %>

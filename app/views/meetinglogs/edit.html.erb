@@ -1,6 +1,43 @@
-<h1>Editing Meetinglog</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href=
+"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">     
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>     
+    <script src=
+"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">
+    </script>     
+    <script src=
+"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
+    </script>
+</head>
 
-<%= render 'form', meetinglog: @meetinglog %>
+<% if current_user.admin %>
+<body>
+    <div class = "container"> 
+        <img src="/assets/WIN_logo.jpeg" width="100">
+    </div>
 
-<%= link_to 'Show', @meetinglog %> |
-<%= link_to 'Back', meetinglogs_path %>
+    <div class="jumbotron text-center" style="color:white; background-color: #3399ff">
+        <h2>Editing Meeting Logs</h2>
+    </div> 
+
+    <div class="container">
+
+		<%= render 'form', meetinglog: @meetinglog %>
+	</div>
+
+    <br>
+    <div class="text-center">
+		<%= link_to 'Show', @meetinglog, {class: "btn btn-light"} %> |
+		<%= link_to 'Back', meetinglogs_path, {class: "btn btn-light"} %>
+	</div>
+
+</body>
+<% else %>
+<p> Access Denied. Need Admin Privileges</p>
+<% end %>

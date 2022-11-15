@@ -1,12 +1,55 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Font Awesome -->
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+  rel="stylesheet"
+/>
+<!-- Google Fonts -->
+<link
+  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+  rel="stylesheet"
+/>
+<!-- MDB -->
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.0/mdb.min.css"
+  rel="stylesheet"
+/>
+<link rel="stylesheet" href=
+"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">     
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>     
+    <script src=
+"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">
+    </script>     
+    <script src=
+"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
+    </script>
+<!-- MDB -->
+<script
+  type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.0/mdb.min.js"
+></script>
+</head>
+<% if current_user.admin %>
+<body>
 <p id="notice"><%= notice %></p>
+<div class = "container"> 
+  <img src="/assets/WIN_logo.jpeg" width="100">
+</div>
+<div class="jumbotron text-center" style="color:white; background-color: #3399ff">
+  <h2>Meeting Logs</h2>
+</div>
 
-<h1>Meetinglogs</h1>
-
-<table>
+<div class='container'>
+<table class="table table-striped align-middle mb-0 bg-white">
   <thead>
     <tr>
-      <th>User</th>
-      <th>Meeting</th>
+      <th>Database User ID</th>
+      <th>Meeting ID</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,16 +59,21 @@
       <tr>
         <td><%= meetinglog.user_id %></td>
         <td><%= meetinglog.meeting_id %></td>
-        <td><%= link_to 'Show', meetinglog %></td>
         <td><%= link_to 'Edit', edit_meetinglog_path(meetinglog) %></td>
         <td><%= link_to 'Destroy', meetinglog, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
+</div>
 <br>
-
-<%= link_to 'New Meetinglog', new_meetinglog_path %>
+<div class="text-center col-xs-3">
+	<%= link_to 'New Meetinglog', new_meetinglog_path, {class: "btn btn-light"}%>
 <br>
-<%= link_to 'Back', root_path %>
+	<%= link_to 'Back', root_path, {class: "btn btn-light"} %>
+</div>
+</body>
+
+<% else %>
+<p> Access Denied. Need Admin Privileges</p>
+<% end %>
