@@ -258,6 +258,25 @@
 </tbody>
 
 
+    <%= submit_tag "Attend Meeting" %>
+    <br> 
+	
+	
+	
+    <% if current_user.admin %>
+	    <%= link_to 'View Meeting Log', meetinglogs_path(current_user) %> 
+		<br></br>
+        <%= link_to 'View Milestones', milestones_path(current_user) %>
+    <% end %>
+    <br>
+    <%= link_to 'Leaderboard', leaderboard_path %>
+    <br>
+    <%= link_to 'My Milestones', mymilestones_path(current_user) %>
+    <br>
+    <%= link_to 'Help Page', help_index_path%>
+<br>
+<% end %>
+
 
 <% else %>
     <%= link_to 'Sign Up', new_user_registration_path %>
