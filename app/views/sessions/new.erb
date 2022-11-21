@@ -124,7 +124,6 @@
             <br>
             <%= link_to 'View Events', events_path, class: 'v' %> <br>
             <% if current_user.admin %>
-            <%= link_to 'View Meeting Log', meetinglogs_path(current_user), class: 'v' %> <br>
                     <%= link_to 'View Milestones', milestones_path(current_user), class: 'v' %>
             <% end %>
             <br>
