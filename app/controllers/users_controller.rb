@@ -1,3 +1,4 @@
+
 class UsersController < ApplicationController
   def index
   end
@@ -11,7 +12,7 @@ class UsersController < ApplicationController
   # GET /accounts/1/edit
   def edit
   end
-
+  
   # POST /accounts or /accounts.json
   def create
     @user = User.new(account_params)
@@ -64,7 +65,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.update(admin: !@user.admin)
     respond_to do |format|
-      format.html { redirect_to root_path, notice: (@user.admin)? "Made user admin": "Demoted admin" }
+      format.html { redirect_to root_path, notice: @user.admin ? "Made user admin" : "Demoted admin" }
       format.json { head :no_content }
     end
   end
@@ -74,7 +75,7 @@ class UsersController < ApplicationController
     # Only allow a list of trusted parameters through.
     def account_params
         params.require(:user).permit(:first_name, :last_name, :email, :password, :points, :admin)
-      end
+    end
 
 
 end

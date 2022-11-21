@@ -29,7 +29,7 @@ class PersonMilestoneMapsController < ApplicationController
 
     respond_to do |format|
       if @person_milestone_map.save
-        format.html { redirect_to person_milestone_map_url(@person_milestone_map)}
+        format.html { redirect_to person_milestone_map_url(@person_milestone_map) }
         flash[:alert] = "Person milestone map was successfully created."
         format.json { render :show, status: :created, location: @person_milestone_map }
       else
@@ -43,7 +43,7 @@ class PersonMilestoneMapsController < ApplicationController
   def update
     respond_to do |format|
       if @person_milestone_map.update(person_milestone_map_params)
-        format.html { redirect_to person_milestone_map_url(@person_milestone_map)}
+        format.html { redirect_to person_milestone_map_url(@person_milestone_map) }
         flash[:alert] = "Person milestone map was successfully updated."
         format.json { render :show, status: :ok, location: @person_milestone_map }
       else
@@ -58,7 +58,7 @@ class PersonMilestoneMapsController < ApplicationController
     @person_milestone_map.destroy
 
     respond_to do |format|
-      format.html { redirect_to person_milestone_maps_url}
+      format.html { redirect_to person_milestone_maps_url }
       flash[:alert] = "Person milestone map was successfully destroyed."
       format.json { head :no_content }
     end

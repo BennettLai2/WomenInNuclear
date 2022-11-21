@@ -44,7 +44,7 @@
 
 <body style="background-color">
     <div class = "container"> 
-        <img src="/assets/WIN_logo.jpeg" width="100">
+        <%= image_tag "WIN_logo.jpeg", style: "width: 20%" %>
     </div>
 
     <div class="jumbotron text-center" style="color:white; background-color: #3399ff">
@@ -93,7 +93,11 @@
                     <td><%= user.email %></td>
                     <td><%= user.points %></td>
                     <td><%= user.admin %></td>
-                    <td><%= link_to 'Make Admin', toggle_admin_path(user), method: :put, data: { confirm: 'Are you sure?' }, class: 'v' %></td>
+                    <% if user.admin %>
+                        <td><%= link_to 'Demote Admin', toggle_admin_path(user), method: :put, data: { confirm: 'Are you sure?', class: 'v' } %></td>
+                    <% else %>
+                        <td><%= link_to 'Make Admin', toggle_admin_path(user), method: :put, data: { confirm: 'Are you sure?', class: 'v' } %></td>
+                    <% end %>
                     <td><%= link_to 'Destroy', admin_destroy_user_path(user), method: :delete, data: { confirm: 'Are you sure?' }, class: 'd' %></td>
                 </tr>
                 <% end %>
@@ -120,8 +124,8 @@
             <br>
             <%= link_to 'View Events', events_path, class: 'v' %> <br>
             <% if current_user.admin %>
-				<%= link_to 'View Meeting Log', meetinglogs_path(current_user), class: 'v' %> <br>
-                <%= link_to 'View Milestones', milestones_path(current_user), class: 'v' %>
+            <%= link_to 'View Meeting Log', meetinglogs_path(current_user), class: 'v' %> <br>
+                    <%= link_to 'View Milestones', milestones_path(current_user), class: 'v' %>
             <% end %>
             <br>
             <%= link_to 'My Milestones', mymilestones_path(current_user), class: 'v' %> <br>

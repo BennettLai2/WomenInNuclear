@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
         @user = current_user
         @event = Event.where(meeting_id: params[:event_id]).where("start_time <= :current_time AND end_time >= :current_time", {current_time: Time.now}).take
         @entry = Meetinglog.where(user_id: @user.id, meeting_id: params[:event_id]).exists?
-        if(!@entry & @event)
+        if !@entry & @event
           @meetinglog = Meetinglog.where(user_id: @user.id, meeting_id: params[:event_id]).first_or_create
           current_user.points = current_user.points + @event.points
           Milestone.where("points <= ?", current_user.points).find_each do |milestone|
@@ -30,19 +30,19 @@ class SessionsController < ApplicationController
         end
     end
 
-	# I think we can deprecate the bottom bc moved logic to above
+  # I think we can deprecate the bottom bc moved logic to above
 
-	def meetingvalidation
-		@user = current_user
-		@event = Event.where(meeting_id: params[:event_id]).where("start_time <= :current_time AND end_time >= :current_time", {current_time: Time.now}).take
-		@entry = Meetinglog.where(user_id: @user.id, meeting_id: params[:event_id]).exists?
-		if(!@entry & @event)
-			@meetinglog = Meetinglog.where(user_id: @user.id, meeting_id: params[:event_id]).first_or_create
-			current_user.points = current_user.points + @event.points
-			current_user.save
-		end
-	
-	end
+  def meetingvalidation
+    @user = current_user
+    @event = Event.where(meeting_id: params[:event_id]).where("start_time <= :current_time AND end_time >= :current_time", {current_time: Time.now}).take
+    @entry = Meetinglog.where(user_id: @user.id, meeting_id: params[:event_id]).exists?
+    if !@entry & @event
+      @meetinglog = Meetinglog.where(user_id: @user.id, meeting_id: params[:event_id]).first_or_create
+      current_user.points = current_user.points + @event.points
+      current_user.save
+    end
+  
+  end
 
     def resetpoints
     end
@@ -53,6 +53,7 @@ class SessionsController < ApplicationController
       if @email_confirmation == @real_admin_email
         User.update_all(points: 0)
         PersonMilestoneMap.delete_all
+        Meetinglog.delete_all
         redirect_to root_path
         flash[:alert] = "Operation Succeeded: Points have been reset to 0"
       else
@@ -64,5 +65,4 @@ class SessionsController < ApplicationController
     def leaderboard
         @users = User.all.order('points DESC')
       end
-
 end
