@@ -1,3 +1,4 @@
+
 class UsersController < ApplicationController
   def index
   end
@@ -11,7 +12,7 @@ class UsersController < ApplicationController
   # GET /accounts/1/edit
   def edit
   end
-
+  
   # POST /accounts or /accounts.json
   def create
     @user = User.new(account_params)
