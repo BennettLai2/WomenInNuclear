@@ -19,28 +19,30 @@
 <div class="jumbotron text-center" style="color:white; background-color: #3399ff">
   <h2>Milestones</h2>
 </div>
+<div class="container">
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">Name</th>
-      <th scope="col">Points</th>
-      <th scope="col">Message</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @milestones.each do |milestone| %>
+  <table class="table table-striped">
+    <thead>
       <tr>
-        <td><%= milestone.name %></td>
-        <td><%= milestone.points %></td>
-        <td><%= milestone.message %></td>
+        <th scope="col">Name</th>
+        <th scope="col">Points</th>
+        <th scope="col">Message</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<div class="text-center">
-<%= button_to 'Back', root_path, :class => "btn btn-light", :method => :get  %>
+    <tbody>
+      <% @milestones.each do |milestone| %>
+        <tr>
+          <td><%= milestone.name %></td>
+          <td><%= milestone.points %></td>
+          <td><%= milestone.message %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class="text-center">
+  <%= button_to 'Back', root_path, :class => "btn btn-light", :method => :get  %>
+  </div>
 </div>
