@@ -59,7 +59,6 @@ RSpec.describe 'Creating and Logging in with Wrong Password', type: :feature do
     expect(page).to have_content('Invalid Email or password')
   end
 end
-=end
 
 RSpec.describe 'Creating and Logging in as a normal user', type: :feature do
   scenario 'valid inputs' do
@@ -253,4 +252,4 @@ end
       expect(page).not_to have_content('eventNew')
     end
   end
-=end
+
