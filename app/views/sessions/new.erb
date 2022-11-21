@@ -99,10 +99,11 @@
                         <% else %>
                             <td><%= link_to 'Make Admin', toggle_admin_path(user), method: :put, data: { confirm: 'Are you sure?', class: 'v' } %></td>
                         <% end %>
+                        <td><%= link_to 'Destroy', admin_destroy_user_path(user), method: :delete, data: { confirm: 'Are you sure?' }, class: 'd' %></td>
                     <% else %>
                         <td></td>
+                        <td></td>
                     <% end %>
-                    <td><%= link_to 'Destroy', admin_destroy_user_path(user), method: :delete, data: { confirm: 'Are you sure?' }, class: 'd' %></td>
                 </tr>
                 <% end %>
             </table>
