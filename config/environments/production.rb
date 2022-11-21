@@ -75,7 +75,7 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
   config.action_mailer.perform_deliveries = true
   config.action_mailer.default charset: 'utf-8'
-  config.action_mailer.default_url_options = { host: 'https://womeninnucle-main-mg0sepo72dsi.herokuapp.com/' }
+  config.action_mailer.default_url_options = { host: 'https://win-point-tracker.herokuapp.com/' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     enable_starttls_auto: true,
