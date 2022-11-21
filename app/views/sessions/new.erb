@@ -125,13 +125,11 @@
                 <br> 
             </div>
 
-
             <br>
             <%= link_to 'View Events', events_path, class: 'v' %> <br>
             <% if current_user.admin %>
-                    <%= link_to 'View Milestones', milestones_path(current_user), class: 'v' %>
+                    <%= link_to 'View Milestones', milestones_path(current_user), class: 'v' %><br>
             <% end %>
-            <br>
             <%= link_to 'My Milestones', mymilestones_path(current_user), class: 'v' %> <br>
             <%= link_to 'Leaderboard', leaderboard_path, class: 'v' %> <br>
             <%= link_to 'Help Page', help_index_path, class: 'v'%>
