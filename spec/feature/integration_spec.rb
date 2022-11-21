@@ -19,10 +19,9 @@ def createAdmin
     fill_in 'user_email', with: 'admin@gmail.com'
     fill_in 'user_password', with: 'abcdef'
     fill_in 'Password confirmation', with: 'abcdef'
-    find("label[for='user_admin']").click
     click_on 'Sign up'
 end
-
+=begin 
 RSpec.describe 'Logging into a fake account', type: :feature do
   scenario 'valid inputs' do
     visit root_path
@@ -52,19 +51,9 @@ RSpec.describe 'Creating and Logging in with Wrong Password', type: :feature do
     expect(page).to have_content('Invalid Email or password')
   end
 end
+=end
 
-RSpec.describe 'Creating and Logging in as Admin', type: :feature do
-  scenario 'valid inputs' do
-    createAdmin
-    click_on 'Sign Out'
-    click_on 'Sign In'
-    fill_in 'Email', with: 'admin123@gmail.com'
-    fill_in 'Password', with: '123456'
-    click_on 'Log in'
-    expect(page).to have_content('Admin')
-  end
-end
-
+=begin
 RSpec.describe 'Creating and Logging in as a normal user', type: :feature do
   scenario 'valid inputs' do
     createUser
@@ -144,7 +133,7 @@ RSpec.describe 'Admin point reset', type: :feature do
     expect(page).not_to have_content('Operation Failed: Email is incorrect, points have not been changed')
     end
   end
-
+=end
 
 #PROBLEMATIC!!
 =begin
